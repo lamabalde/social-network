@@ -1,0 +1,8 @@
+.textarea {
+    border: none;
+    outline: none;
+    border-radius: 1rem;
+    resize: none;
+    padding: 0.2rem;
+    /* font-family: sans-serif; */
+}

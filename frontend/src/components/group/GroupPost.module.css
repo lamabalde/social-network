@@ -1,0 +1,63 @@
+
+.container {
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
+    border-radius: 1rem;  
+    padding: 25px;
+    margin: 20px 0px 20px 0px;
+    /* background-color: var(--seasalt); */
+    
+    /* align-items: center; */
+    /* width: 50%; */
+}
+
+.user {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+.username {
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--eerie-black);
+
+}
+
+.content {
+    margin: 10px;
+}
+
+.date {
+    color: grey;
+}
+
+
+.comments {
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.153);
+
+    font-size: 14px;
+    color: grey;
+}
+
+.comments:hover {
+    cursor: pointer;
+}
+
+.btn {
+    border: none;
+    background: none;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+

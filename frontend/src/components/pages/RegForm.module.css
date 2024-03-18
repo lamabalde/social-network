@@ -1,0 +1,94 @@
+@import "../var.css";
+
+/* Définir la position de départ de la page un peu plus haut */
+.container {
+    margin-top: 50px; /* Vous pouvez ajuster cette valeur en fonction de vos besoins */
+}
+
+
+
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 4rem;
+    display: flex;
+    justify-content: center;
+    color: var(--ultra-violet, purple);
+    
+}
+
+.reg-form {
+    overflow-y: scroll;
+    max-height: 500px; 
+    width: 70%;
+    min-width: 600px;
+    max-width: 750px;
+}
+
+.reg-input {
+    width: 65%;
+    margin: 0.2rem 0;
+
+    background-color: rgba(255, 255, 255, 0.602);
+    outline: solid var(--ultra-violet, purple);
+    border: 0.1rem solid transparent;
+    padding: 1.25rem;
+    border-radius: 0.6rem;
+    /* width: 75%; */
+}
+
+.reg-input:focus {
+    border: 0.1rem solid var(--ultra-violet, purple);
+}
+
+.img-preview {
+    border-radius: 50%;
+}
+
+.sub-btn {
+    margin: 2rem 0;
+    width: 60%;
+}
+
+p a {
+    display: inline;
+}
+.loading-spinner-div {
+    margin-top: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.error-msg {
+    font-size: 1.5rem;
+    margin: auto;
+    color:var(--cinnabar, red);
+}
+
+@keyframes loading {
+    0% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.5;
+    }
+}
+
+.loading {
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    color: var(--ultra-violet, purple);
+    margin: 5rem 0 3rem 0;
+    animation: loading 1.6s linear infinite;
+}
+
+.try-again {
+    margin: 3rem 0;
+}

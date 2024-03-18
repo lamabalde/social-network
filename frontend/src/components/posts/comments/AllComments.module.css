@@ -1,0 +1,40 @@
+.container {
+    /* width: 90%; */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.inputWrapper {
+    display: flex;
+    gap: 10px;
+}
+
+.input {
+    width: 80%;
+}
+
+.input::placeholder {   
+    padding: 8px;
+}
+
+.send {
+    border: none;
+    background: none;
+    margin-left: -50px;
+}
+
+.send:hover {
+    cursor: pointer;
+}
+
+.username {
+    font-weight: bold;
+}
+
+.comment {
+    display: flex;
+    gap: 10px;
+}

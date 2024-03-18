@@ -1,0 +1,21 @@
+@import "../var.css";
+
+.lg-btn {
+    background-color: var(--ultra-violet-0, purple);
+    color: var(--antiflash-white, white);
+    padding: 1.25rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 2.2rem;
+    /* width: 75%; */
+    font-size: 1.25rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    /* margin: 1.6rem 0; */
+    /* transition: color 0.3s ease; */
+}
+
+.lg-btn:hover {
+    background-color: var(--ultra-violet, purple);;
+}
+

@@ -1,0 +1,48 @@
+.send-msg {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 85%;
+    position: absolute;
+    background-color: var(--seasalt, white);
+    border-radius: 1.5rem;
+    /* opacity: 80%; */
+}
+
+.send-msg-input {
+    background-color: var(--seasalt, white);
+    width: 136%;
+}
+
+.send {
+    border: none;
+    background: none;
+    /* position: absolute;
+    right: 20px;
+    top: 10px; */
+}
+
+.send:hover {
+    cursor: pointer;
+}
+
+.emoji-ctnr {
+    position: absolute;
+    bottom: -20px;
+    right: 5%;
+    opacity: 0.7;
+}
+
+.show-picker {
+    font-size: 2rem;
+    border: none;
+    position: absolute;
+    top: 5%;
+    right: 12%;
+    /* margin: -0.5rem; */
+    background-color: var(--seasalt, white);
+}
+
+.show-picker:hover {
+    cursor: pointer;
+}

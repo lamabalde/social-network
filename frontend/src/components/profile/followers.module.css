@@ -1,0 +1,33 @@
+
+.container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    margin: 0px -10px 0px -10px;
+
+    justify-content: space-between;
+}
+
+/* .container:hover {
+    background-color: var(--antiflash-white);
+    border-radius: 20px;
+} */
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.right {
+    margin-right: 10px;
+}
+

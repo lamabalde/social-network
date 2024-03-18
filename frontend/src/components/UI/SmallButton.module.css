@@ -1,0 +1,19 @@
+@import "../var.css";
+
+.small-btn {
+    background-color: var(--ultra-violet-0, purple);
+    color: var(--antiflash-white, white);
+    padding: .5rem 1rem;
+    cursor: pointer;
+    border: none;
+    border-radius: .6rem;
+    /* width: 75%; */
+    font-size: .8rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.small-btn:hover {
+    background-color: var(--ultra-violet, purple);
+}
+

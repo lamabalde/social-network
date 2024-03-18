@@ -1,0 +1,121 @@
+.container {
+    width: 100%;
+    margin-top: -40px;
+}
+
+.wrapper {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.btn {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+   
+}
+
+.img {
+
+    padding: 50px;
+    border-radius: 50%;
+    background: rgb(188, 188, 188);
+}
+
+.username {
+    margin-top: -10px;
+
+}
+
+.followers {
+    display: flex;
+    gap: 20px;
+    /* justify-content: flex-start; */
+}
+
+.follow {
+    cursor: pointer;
+}
+
+
+.count {
+    font-weight: bold;
+}
+
+
+
+.private {
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px;
+}
+
+
+.followbtn {
+    background-color: var(--ultra-violet-0, purple);
+    color: var(--antiflash-white, white);
+    padding: .5rem 1rem;
+    cursor: pointer;
+    border: none;
+    border-radius: .6rem;
+    /* width: 75%; */
+    font-size: .8rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.followbtn:hover {
+    background-color: var(--ultra-violet, purple);;
+}
+
+.name {
+    font-weight: bold;
+}
+
+.closeFriend {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+    align-items: center;
+}
+
+.checkbox {
+    accent-color: var(--ultra-violet-0);
+}
+
+/* left-side */
+
+/* .follow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+} */
+
+/* .wrapper {
+    /* left-side
+    align-items: center;
+} */
+
+/* .followers {
+     align-items: center;
+    justify-content: center;
+} */
+
+

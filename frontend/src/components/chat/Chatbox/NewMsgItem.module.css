@@ -1,0 +1,24 @@
+
+.self-msg {
+    display: flex;
+    justify-content: end;
+    color: var(--antiflash-white, white);
+    margin: 0.2rem 0;
+}
+
+.frd-msg {
+    display: flex;
+    justify-content: start;
+    margin: 0.2rem 0;
+}
+.chat-bubble-self {
+    background-color: var(--ultra-violet, purple);
+    border-radius: 1.5rem;
+    padding: 0.5rem 0.8rem;
+}
+
+.chat-bubble-frd {
+    background-color: var(--antiflash-white, white);
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+}

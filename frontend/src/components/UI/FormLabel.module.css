@@ -1,0 +1,12 @@
+@import "../var.css";
+
+.label-container {
+    margin: 1.25rem 0;
+}
+
+.label {
+    color: var(--ultra-violet, purple);
+    font-size: 1.5rem;
+	font-weight: 700;
+    padding: 1.25rem;
+}

@@ -1,0 +1,27 @@
+@import "../var.css";
+
+
+.logout-btn {
+    /* background-color: var(--cinnabar, red); */
+    /* color: var(--antiflash-white, white); */
+    border: none;
+    outline: none;
+
+
+    /* padding: 10px; */
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    background-color: var(--antiflash-white);
+
+}
+
+.logout-btn:hover {
+    /* border: 1px solid var(--ultra-violet-0); */
+    /* background-color: var(--ultra-violet-0); */
+    cursor: pointer;
+}

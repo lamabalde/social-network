@@ -1,0 +1,41 @@
+.inputWrapper {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    position: relative;
+}
+
+.input {
+    width: 80%;
+}
+
+.input::placeholder {   
+    padding: 8px;
+}
+
+.functions {
+    display: flex;
+
+    /* position: absolute;
+    left: 72%; */
+}
+
+.attach {
+      
+    position: absolute;
+    left: 77%;
+}
+
+.send {
+    border: none;
+    background: none;
+}
+
+.send:hover {
+    cursor: pointer;
+}
+
+.comment-img-preview {
+    position: absolute;
+    left: 72%;
+}

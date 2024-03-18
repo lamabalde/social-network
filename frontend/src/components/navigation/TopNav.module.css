@@ -1,0 +1,119 @@
+nav {
+    position: fixed;
+    /* width: 100vw; */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+}
+
+.top-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    /* list-style: none; */
+    /* padding: 20px; */
+    padding: 0px 20px 0px 20px;
+    height: 60px;
+    background-color: var(--seasalt);
+    border-bottom: 2px solid rgba(181, 181, 181, 0.388);;
+}
+
+.leftContainer {
+    display: flex;
+    align-items: center;
+    gap: 30%;
+}
+
+.logo {
+    font-weight: bold;
+    margin-left: 30px;
+    text-decoration: none;
+    color: var(--eerie-black);
+    outline: none;
+}
+
+.menu {
+    display: flex;
+    gap: 30px;
+    font-weight: 500;
+    /* margin-left: -750px; */
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;  
+    color: var(--dim-grey);}
+
+.profile:hover {
+    color: var(--ultra-violet-0);
+    cursor: pointer;
+}
+
+.lnk {
+    /* color: var(--eerie-black); */
+    color: var(--dim-grey);
+    text-decoration: none;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.lnk:hover, .lnk:focus {
+    color: var(--ultra-violet-0);
+    border-top: 3px solid var(--ultra-violet-0);
+    margin-top: -3px;
+}
+
+.lnk:hover, .menu .lnk.active {
+    color: var(--ultra-violet-0);
+    border-top: 3px solid var(--ultra-violet-0);
+    margin-top: -3px;
+}
+
+.active {
+    color: var(--ultra-violet-0);
+    border-top: 3px solid var(--ultra-violet-0);
+    margin-top: -3px;
+
+}
+
+.icons {
+    display: flex;
+    gap: 15px;
+}
+
+.btn {
+    border: none;
+    outline: none;
+    background: none;
+    position: relative;
+    cursor: pointer;
+}
+
+.notif {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.logout {
+    padding: 10px;
+    background-color: var(--antiflash-white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+}
+
+.badge {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    padding: 5px 5px;
+    border-radius: 50%;
+    background: rgb(196, 0, 0);
+    color: white;
+  }

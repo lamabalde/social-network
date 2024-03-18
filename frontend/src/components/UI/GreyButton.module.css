@@ -1,0 +1,23 @@
+.btn {
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    /* background-color: rgb(126, 120, 166); */
+    background-color: #E7E7E7;
+    /* color: var(--antiflash-white); */
+    color: var(--eerie-black);
+    /* color: var(--eerie-black); */
+    padding: .5rem 1rem;
+    cursor: pointer;
+    border-radius: 0.6rem;
+    font-size: .8rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    /* background-color: var(--ultra-violet); */
+    /* color: var(--antiflash-white); */
+    background-color:  #b6b6b6;
+
+}

@@ -1,0 +1,31 @@
+.container {
+    display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* gap: 30px; */
+    /* margin-top: 50px; */
+    /* width: 80%; */
+    /* margin: 20px; */
+}
+
+.left {
+    width: 25%;
+}
+
+.mid {
+    /* border: 1px solid black;
+    border-radius: 20px; */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    /* max-width: 700px; */
+    min-width: 680px;
+}
+
+.right {
+    /* width: 30%; */
+    width: 20%;
+    /* border: 1px solid black;
+    border-radius: 20px; */
+}

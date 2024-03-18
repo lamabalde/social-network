@@ -1,0 +1,22 @@
+.input {
+    display: none;
+}
+
+.label {
+    background-color: var(--antiflash-white, white);
+    color:  var(--ultra-violet, purple);
+    padding: .3rem .8rem;
+  
+    border: solid var(--ultra-violet, purple) 1px;
+    border-radius: 1.5rem;
+    /* width: 75%; */
+    font-size: 0.7rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease; 
+
+    cursor: pointer;
+}
+
+.label:hover, .input:hover+.label {
+    /* background-color: var(--seasalt, white);  */
+}

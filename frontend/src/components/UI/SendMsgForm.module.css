@@ -1,0 +1,9 @@
+.send-msg-form {
+	text-align: center;
+	background-color: var(--antiflash-white, white);
+    padding: 0.2rem 0.75rem;
+    margin: 1rem;
+    /* border: 3px solid var(--ultra-violet, purple); */
+    border-radius: 0.75rem;
+    /* opacity: 0.8; */
+}

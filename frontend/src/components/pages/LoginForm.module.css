@@ -1,0 +1,38 @@
+@import "../var.css";
+
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.title {
+    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+    color: var(--ultra-violet, purple);
+    margin: 5rem 0 0 0;
+}
+
+.login-form {
+    width: 50%;
+    min-width: 600px;
+    max-width: 750px;
+}
+
+.login-input {
+    width: 65%;
+    
+}
+
+.sub-btn {
+    margin: 2rem 0;
+    width: 60%;
+}
+
+p a {
+    display: inline;
+}

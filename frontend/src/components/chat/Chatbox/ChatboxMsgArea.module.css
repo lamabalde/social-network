@@ -1,0 +1,16 @@
+.msg-area {
+    background-color: var(--seasalt, white);
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: end; */
+    margin: 0.8rem 1rem;
+    opacity: 1;
+    overflow-y: scroll;
+    /* card styles */
+    border-radius: 0.75rem;
+    color: rgb(16, 16, 16);
+    padding: 20px;   
+    /* height: 80%; */
+    
+}

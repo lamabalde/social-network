@@ -1,0 +1,30 @@
+.item {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    background-color: var(--antiflash-white);
+    color: var(--ultra-violet, purple);
+    height: 60px;
+    gap: 1rem;
+    border: 1px solid var(--ultra-violet, purple);
+    border-left: 15px solid var(--ultra-violet, purple);    
+    /* z-index: 1000; */
+    cursor: pointer;
+}
+
+.noti {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: grey;
+    margin-left: 6px;
+}
+
+.noti.active {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: var(--cinnabar, red);
+    margin-left: 6px;
+}

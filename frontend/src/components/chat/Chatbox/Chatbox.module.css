@@ -1,0 +1,23 @@
+.container {
+    position: relative;
+    /* display: block; */
+    /* justify-content: center; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.close-btn {
+    position: absolute;
+    top: 0;
+    left:0;
+    background-color: transparent;
+    color: var(--seasalt, white);
+    font-size: 1.5rem;
+    font-weight: 700;
+    border: none;
+}
+
+.close-btn:hover {
+    cursor: pointer;
+}

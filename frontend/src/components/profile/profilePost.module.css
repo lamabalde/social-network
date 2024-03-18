@@ -1,0 +1,64 @@
+.container {
+    height: fit-content;
+    width: 93%;
+    padding: 25px;
+    margin: 20px 0px 20px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+
+.author {
+    /* margin: 0.2rem 0.2rem 0 0.2rem; */
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.author a {
+    color: var(--ultra-violet);
+    text-decoration: none;
+
+}
+.post-avatar {
+    margin-right: 0.5rem;
+}
+
+.fname {
+}
+.lname {
+    
+}
+.nname {
+    
+}
+
+.create-at {
+    margin: 0 10px;
+}
+
+.details {
+    font-weight: bold;
+}
+
+.date {
+    color: grey;
+}
+
+.content {
+    margin: 10px;
+}
+
+
+.comments {
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+    padding-bottom: 10px;
+}
+
+.comments:hover {
+    color: var(--ultra-violet);
+    /* border-bottom: 1px solid var(--antiflash-white); */
+}

@@ -1,0 +1,35 @@
+
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    margin-top: 50px;
+    width: 100%;
+    margin: 20px;
+}
+
+/* .left {
+    width: 20%;
+} */
+
+.mid {
+    /* border: 1px solid black;
+    border-radius: 20px; */
+    width: 80%;
+    max-width: 550px;
+    min-width: 380px;
+}
+
+.right {
+    /* width: 30%; */
+    width: 250px;
+    /* border: 1px solid black;
+    border-radius: 20px; */
+}
+
+.refresh {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}

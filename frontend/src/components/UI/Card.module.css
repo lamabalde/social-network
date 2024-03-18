@@ -1,0 +1,22 @@
+@import "../var.css";
+
+
+.card {
+    border-radius: 0.75rem;
+    /* border: 2px solid var(--ultra-violet, purple); */
+    /* background: var(--antiflash-white, white); */
+    background-color: var(--seasalt);
+    /* background-color: rgb(241, 241, 241); */
+    /* color:var(--ultra-violet, purple); */
+    color: rgb(16, 16, 16);
+    /* padding: 0.6rem 0.75rem; */
+    padding: 20px;
+    /* margin: 2rem 2rem; */
+    /* opacity: 0.8; */
+    /* text-align: center; */
+
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.041);
+    
+    /* border: 2px solid rgba(181, 181, 181, 0.388);; */
+
+}

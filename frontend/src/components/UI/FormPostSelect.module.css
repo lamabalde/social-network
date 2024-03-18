@@ -1,0 +1,12 @@
+@import "../var.css";
+
+.select {
+    /* border-radius: 0.5rem; */
+    /* border-color: var(--ultra-violet, purple); */
+
+    border: none;
+    width: fit-content;
+    outline: none;
+    background-color: transparent;
+}
+

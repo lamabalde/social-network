@@ -1,0 +1,17 @@
+.list {
+    background-color: var(--ultra-violet, purple);
+    overflow-y: scroll;
+
+
+
+}
+
+
+
+.chatbox {
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-around;
+
+    background-color: red;
+}

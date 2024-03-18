@@ -1,0 +1,46 @@
+@import "./components/var.css";
+
+html {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	background-color: var(--antiflash-white);
+	margin-top: 150px;
+}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
+}
+
+textarea {
+	border: none;
+	outline: none;
+	border-radius: 20px;
+	resize: none;
+	padding: 8px;
+	background-color: rgb(230, 230, 230);
+}
+
+input {
+	border: none;
+	outline: none;
+	background-color: rgb(230, 230, 230);
+	padding: 8px;
+	border-radius: 15px;
+}
+
+::placeholder {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+		sans-serif;
+}

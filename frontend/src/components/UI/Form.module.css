@@ -1,0 +1,11 @@
+@import "../var.css";
+
+.form {
+	text-align: center;
+	background-color: var(--antiflash-white, white);
+    padding: 2rem 0.75rem 1.2rem;
+    margin: 3rem 10rem;
+    border: 3px solid var(--ultra-violet, purple);
+    border-radius: 0.75rem;
+    /* opacity: 0.8; */
+}
