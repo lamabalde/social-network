@@ -26,7 +26,7 @@ const followingAmount = computed(() => followersComponent.value.following == nul
     <div v-if="userComponent.profileLoaded" class="flex flex-col bg-[#423955] h-30 w-50 rounded"> <!-- Avatar -->
         <img v-if="userComponent.userInfo.profileImg!=''" :src="'http://localhost:8000/'+userComponent.userInfo.profileImg"
         :alt="userComponent.userInfo.userName" @error="errorImgLoad=true" class="flex bg-[#ffffff] ">
-        <img v-else src="/favicon.ico" class="flex bg-[#ffffff] w-40 mt-10 ml-60">
+        <img v-else src="/logo.png" class="flex bg-[#ffffff] w-40 mt-10 ml-60">
       </div> 
     <p class="mt-10 ml-8 mb-1 font-bold text-center text-4xl">
       {{ userComponent.userInfo.firstName }} 

@@ -11,7 +11,7 @@ import CloseFriendsSearchResultList from './navbar_components/CloseFriendsSearch
 <template>
   <header class="navbar flex items-center w-full fixed shadow-md top-0 bg-purple-800 text-white text-m h-16">
     <router-link to="/">
-        <img src="/favicon.ico" title="Go to the main page" alt="home" class="w-16 ml-4">
+        <img src="/logo.png" title="Go to the main page" alt="home" class="w-16 ml-4">
       </router-link>
       
     <div class="navbar-items flex justify-end items-center pl-4 pr-6 w-full">

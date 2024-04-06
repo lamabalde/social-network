@@ -26,7 +26,7 @@ import PostLikes from '../reactions/PostLikes.vue';
             </button>
             <div class="flex flex-col ml-8 mt-6 mr-8 mb-8">
                 <div class="flex flex-row mb-8"> <!-- User info -->
-                    <img src="/favicon.ico" class="h-14 w-14 m-1 rounded-full border-2 border-purple-500"/>
+                    <img src="/logo.png" class="h-14 w-14 m-1 rounded-full border-2 border-purple-500"/>
                     <div class="flex flex-col ml-1 mt-1">
                         <router-link :to="new routerParams('profile', userID)" class="font-bold text-l">{{ userName }}</router-link>
                         <span class="text-sm"> {{ convertDateToLocale(dateCreate)   }} <!-- 13.12.2023 14:49 --></span>

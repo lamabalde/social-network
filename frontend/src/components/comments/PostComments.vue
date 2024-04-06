@@ -24,7 +24,7 @@ import { convertDateToLocale } from '../../js_modules/helpers/helpers';
     <button class="ml-8 mt-10 hover:text-purple-800" @click="showComments">Comments ({{ commentsComponent.amountOfComments(postID) }}) </button>
     <div v-if="commentsVisible">
         <div v-for="comment in commentsComponent.comments[postID]" class="flex flex-row m-8 border rounded p-4 ">
-            <img src="/favicon.ico" class="h-8 w-8 m-1 rounded-full border-2 border-purple-500"/>
+            <img src="/logo.png" class="h-8 w-8 m-1 rounded-full border-2 border-purple-500"/>
             <div class="flex flex-col ml-2 mt-1">
                 
                 <span class="mb-2 font-bold text-gray-600">{{ comment.content.userName }}</span>
