@@ -67,6 +67,7 @@ You can use the following user accounts for testing, but we recommend creating y
 | mabalde    | mabalde    | mabalde@mail.com |
 |daibou      | daibou     | daibou@gmail.com |
 | ndiagaba   | ndiagaba   | ndiaga@gmail.com |
+| aissata    | aissata   | aissata@gmail.com |
 <br>
 
 ## Authors
