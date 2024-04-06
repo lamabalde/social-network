@@ -4,8 +4,8 @@ import (
 	"testing"
 	"time"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/models"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/webmodel"
+	"social-network/backend/pkg/db/sqlite/models"
+	"social-network/backend/pkg/webmodel"
 )
 
 func TestCreateUser(t *testing.T) {

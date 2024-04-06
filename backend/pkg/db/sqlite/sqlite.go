@@ -9,8 +9,8 @@ import (
 	"strconv"
 	"strings"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/models"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/queries"
+	"social-network/backend/pkg/db/sqlite/models"
+	"social-network/backend/pkg/db/sqlite/queries"
 
 	"github.com/golang-migrate/migrate/v4"
 	_ "github.com/golang-migrate/migrate/v4/database"

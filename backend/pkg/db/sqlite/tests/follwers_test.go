@@ -6,10 +6,10 @@ import (
 	"strings"
 	"testing"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/controllers/wshub"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/models"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/queries"
+	"social-network/backend/pkg/controllers/wshub"
+	"social-network/backend/pkg/db/sqlite"
+	"social-network/backend/pkg/db/sqlite/models"
+	"social-network/backend/pkg/db/sqlite/queries"
 )
 
 func TestGetFollowers(t *testing.T) {

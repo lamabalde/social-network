@@ -7,10 +7,11 @@ import (
 	"io"
 	"time"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/application"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/helpers"
+	"social-network/backend/application"
+	"social-network/backend/pkg/helpers"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/webmodel"
+	"social-network/backend/pkg/webmodel"
+
 	"github.com/gorilla/websocket"
 )
 

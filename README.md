@@ -61,6 +61,8 @@ You can use the following user accounts for testing, but we recommend creating y
 
 |  Username  |  Password  |    E-mail    |
 |------------|------------|--------------|
+| fallou     | fallou     | fallou@mail.com|
+| test       | test       | test@mail.com |
 | John       | John       | John@John.John|
 | kickstart  | kickstart  | Mary@Mary.Mary|
 |crystalman99| Jesse      | Jesse@Jesse.Jesse|

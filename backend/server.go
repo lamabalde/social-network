@@ -6,10 +6,10 @@ import (
 	"log"
 	"net/http"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/application"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/controllers/wsconnection"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/routes"
+	"social-network/backend/application"
+	"social-network/backend/pkg/controllers/wsconnection"
+	"social-network/backend/pkg/db/sqlite"
+	"social-network/backend/pkg/routes"
 )
 
 var port = "8000" // DB   *sqlite.DBModel

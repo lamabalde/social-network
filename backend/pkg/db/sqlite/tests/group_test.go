@@ -7,9 +7,9 @@ import (
 	"testing"
 	"time"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/models"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/queries"
+	"social-network/backend/pkg/db/sqlite"
+	"social-network/backend/pkg/db/sqlite/models"
+	"social-network/backend/pkg/db/sqlite/queries"
 )
 
 func TestCreateGroup(t *testing.T) {

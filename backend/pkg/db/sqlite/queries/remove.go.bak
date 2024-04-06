@@ -3,7 +3,7 @@ package queries
 import (
 	"net/http"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite"
+	"social-network/backend/pkg/db/sqlite"
 )
 
 func DeleteCookieFromDB(cookie *http.Cookie) error {

@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/models"
+	"social-network/backend/pkg/db/sqlite/models"
 )
 
 func (dbm *DBModel) AddNotification(note *models.Notification) (int, error) {

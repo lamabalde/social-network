@@ -3,13 +3,15 @@ package tests
 import (
 	"fmt"
 	"reflect"
+
 	//"forum/controllers/chat"
 	"testing"
 	"time"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/models"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/queries"
+	"social-network/backend/pkg/db/sqlite"
+	"social-network/backend/pkg/db/sqlite/models"
+	"social-network/backend/pkg/db/sqlite/queries"
+
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -290,17 +292,17 @@ func TestGetUsers(t *testing.T) {
 	for i, test := range tests {
 		var err error
 		var res []*models.UserBase
-		if test.groupID == ""{
-			res, err = f.GetAllUsers()	
-		}else {
-			res, err = f.GetUsersByPartialNameNotInGroup(test.searchQuery,test.groupID)
+		if test.groupID == "" {
+			res, err = f.GetAllUsers()
+		} else {
+			res, err = f.GetUsersByPartialNameNotInGroup(test.searchQuery, test.groupID)
 		}
 		if err != nil {
-			t.Fatalf("test #%d,Error: %#v",i,err)
+			t.Fatalf("test #%d,Error: %#v", i, err)
 		}
 
-		if !reflect.DeepEqual(test.exp,res) {
-			t.Fatalf("Test#%d. Expected %v, got %v",i, test.exp, res)
+		if !reflect.DeepEqual(test.exp, res) {
+			t.Fatalf("Test#%d. Expected %v, got %v", i, test.exp, res)
 		}
 	}
 }

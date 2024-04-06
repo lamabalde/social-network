@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/webmodel"
+	"social-network/backend/pkg/webmodel"
 )
 
 func PayloadToInt(payload json.RawMessage) (int, error) {

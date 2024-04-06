@@ -5,16 +5,16 @@ import (
 	"net/http"
 	"time"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/logger"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/controllers/wshub"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/queries"
+	"social-network/backend/logger"
+	"social-network/backend/pkg/controllers/wshub"
+	"social-network/backend/pkg/db/sqlite/queries"
 
 	"github.com/gorilla/websocket"
 )
 
 type Application struct {
-	ErrLog  *log.Logger
-	InfoLog *log.Logger
+	ErrLog   *log.Logger
+	InfoLog  *log.Logger
 	Hub      *wshub.Hub
 	DBModel  *queries.DBModel
 	Upgrader websocket.Upgrader

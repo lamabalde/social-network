@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/queries"
+	"social-network/backend/pkg/db/sqlite/queries"
 )
 
 const (

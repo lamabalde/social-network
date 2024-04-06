@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"time"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/models"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/helpers"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/webmodel"
+	"social-network/backend/pkg/db/sqlite/models"
+	"social-network/backend/pkg/helpers"
+	"social-network/backend/pkg/webmodel"
 )
 
 func CreateUser(u webmodel.UserCredentials) (*models.User, error) {

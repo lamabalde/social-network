@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"strings"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/application"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/controllers/wsconnection"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/helpers"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/webmodel"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/webmodel/parse"
+	"social-network/backend/application"
+	"social-network/backend/pkg/controllers/wsconnection"
+	"social-network/backend/pkg/helpers"
+	"social-network/backend/pkg/webmodel"
+	"social-network/backend/pkg/webmodel/parse"
 )
 
 func ReplyGetUserProfile(app *application.Application) wsconnection.FuncReplyCreator {

@@ -3,7 +3,7 @@ package queries
 import (
 	"fmt"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/models"
+	"social-network/backend/pkg/db/sqlite/models"
 )
 
 func (dbm *DBModel) GetListOfGroupsUsers(searchQuery string) ([]models.SearchResult, error) {
@@ -61,7 +61,7 @@ func (dbm *DBModel) GetListOfUsersNotFriends(searchQuery, userID string) ([]mode
 
 		results = append(results, result)
 	}
-	
+
 	if err := rows.Err(); err != nil {
 		return results, fmt.Errorf("GetListOfUsersNotFriends: row scan failed: %w", err)
 	}

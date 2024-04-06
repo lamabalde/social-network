@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"strings"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/application"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/helpers"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/webmodel"
+	"social-network/backend/application"
+	"social-network/backend/pkg/helpers"
+	"social-network/backend/pkg/webmodel"
 )
 
 // for handling comment image with ajax

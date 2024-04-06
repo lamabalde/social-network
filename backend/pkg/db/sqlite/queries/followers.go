@@ -3,7 +3,7 @@ package queries
 import (
 	"database/sql"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/models"
+	"social-network/backend/pkg/db/sqlite/models"
 )
 
 const (

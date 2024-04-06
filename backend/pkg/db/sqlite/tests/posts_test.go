@@ -8,10 +8,10 @@ import (
 	"testing"
 	"time"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/helpers"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/models"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/queries"
+	"social-network/backend/pkg/db/sqlite"
+	"social-network/backend/pkg/db/sqlite/helpers"
+	"social-network/backend/pkg/db/sqlite/models"
+	"social-network/backend/pkg/db/sqlite/queries"
 )
 
 type postInDB struct {
@@ -510,13 +510,13 @@ func TestGetPosts(t *testing.T) {
 	f := queries.DBModel{DB: db}
 
 	testCases := []struct {
-		groupID, currUserID,authorID string
-		exp             []*models.Post
+		groupID, currUserID, authorID string
+		exp                           []*models.Post
 	}{
 		{
-			groupID: "",
-			authorID: "",
-			currUserID:  "1",
+			groupID:    "",
+			authorID:   "",
+			currUserID: "1",
 			exp: []*models.Post{
 				{ID: "8", Theme: "Post with comments", Content: models.Content{UserID: "2"}, GroupID: "", Privacy: 0},
 				{ID: "7", Theme: "Wise Kaa", Content: models.Content{UserID: "3"}, GroupID: "", Privacy: 0},
@@ -536,9 +536,9 @@ func TestGetPosts(t *testing.T) {
 			},
 		},
 		{
-			groupID: "",
-			authorID: "",
-			currUserID:  "2",
+			groupID:    "",
+			authorID:   "",
+			currUserID: "2",
 			exp: []*models.Post{
 				{ID: "8", Theme: "Post with comments", Content: models.Content{UserID: "2"}, GroupID: "", Privacy: 0},
 				{ID: "7", Theme: "Wise Kaa", Content: models.Content{UserID: "3"}, GroupID: "", Privacy: 0},
@@ -558,9 +558,9 @@ func TestGetPosts(t *testing.T) {
 			},
 		},
 		{
-			groupID: "",
-			authorID: "",
-			currUserID:  "3",
+			groupID:    "",
+			authorID:   "",
+			currUserID: "3",
 			exp: []*models.Post{
 				{ID: "8", Theme: "Post with comments", Content: models.Content{UserID: "2"}, GroupID: "", Privacy: 0},
 				{ID: "7", Theme: "Wise Kaa", Content: models.Content{UserID: "3"}, GroupID: "", Privacy: 0},
@@ -579,9 +579,9 @@ func TestGetPosts(t *testing.T) {
 			},
 		},
 		{
-			groupID: "",
-			authorID: "",
-			currUserID:  "4",
+			groupID:    "",
+			authorID:   "",
+			currUserID: "4",
 			exp: []*models.Post{
 				{ID: "8", Theme: "Post with comments", Content: models.Content{UserID: "2"}, GroupID: "", Privacy: 0},
 				{ID: "7", Theme: "Wise Kaa", Content: models.Content{UserID: "3"}, GroupID: "", Privacy: 0},
@@ -596,27 +596,27 @@ func TestGetPosts(t *testing.T) {
 			},
 		},
 		{
-			groupID: "1",
-			authorID: "",
-			currUserID:  "2",
+			groupID:    "1",
+			authorID:   "",
+			currUserID: "2",
 			exp: []*models.Post{
 				{ID: "gr2", Theme: "postingr1#2", Content: models.Content{UserID: "3"}, GroupID: "1", Privacy: 0},
 				{ID: "gr1", Theme: "postingr1#1", Content: models.Content{UserID: "2"}, GroupID: "1", Privacy: 0},
 			},
 		},
 		{
-			groupID: "1",
-			authorID: "",
-			currUserID:  "1",
+			groupID:    "1",
+			authorID:   "",
+			currUserID: "1",
 			exp: []*models.Post{
 				{ID: "gr2", Theme: "postingr1#2", Content: models.Content{UserID: "3"}, GroupID: "1", Privacy: 0},
 				{ID: "gr1", Theme: "postingr1#1", Content: models.Content{UserID: "2"}, GroupID: "1", Privacy: 0},
 			},
 		},
 		{
-			groupID: "",
-			authorID: "1",
-			currUserID:  "1",
+			groupID:    "",
+			authorID:   "1",
+			currUserID: "1",
 			exp: []*models.Post{
 				{ID: "6", Theme: "Seamus", Content: models.Content{UserID: "1"}, GroupID: "", Privacy: 0},
 				{ID: "5", Theme: "My parrot", Content: models.Content{UserID: "1"}, GroupID: "", Privacy: 0},
@@ -627,9 +627,9 @@ func TestGetPosts(t *testing.T) {
 			},
 		},
 		{
-			groupID: "",
-			authorID: "2",
-			currUserID:  "2",
+			groupID:    "",
+			authorID:   "2",
+			currUserID: "2",
 			exp: []*models.Post{
 				{ID: "8", Theme: "Post with comments", Content: models.Content{UserID: "2"}, GroupID: "", Privacy: 0},
 				{ID: "4", Theme: "My dog", Content: models.Content{UserID: "2"}, GroupID: "", Privacy: 0},
@@ -641,9 +641,9 @@ func TestGetPosts(t *testing.T) {
 			},
 		},
 		{
-			groupID: "",
-			authorID: "1",
-			currUserID:  "3",
+			groupID:    "",
+			authorID:   "1",
+			currUserID: "3",
 			exp: []*models.Post{
 				{ID: "6", Theme: "Seamus", Content: models.Content{UserID: "1"}, GroupID: "", Privacy: 0},
 				{ID: "5", Theme: "My parrot", Content: models.Content{UserID: "1"}, GroupID: "", Privacy: 0},
@@ -654,9 +654,9 @@ func TestGetPosts(t *testing.T) {
 			},
 		},
 		{
-			groupID: "",
-			authorID: "3",
-			currUserID:  "4",
+			groupID:    "",
+			authorID:   "3",
+			currUserID: "4",
 			exp: []*models.Post{
 				{ID: "7", Theme: "Wise Kaa", Content: models.Content{UserID: "3"}, GroupID: "", Privacy: 0},
 				{ID: "3", Theme: "My cat", Content: models.Content{UserID: "3"}, GroupID: "", Privacy: 0},
@@ -667,19 +667,19 @@ func TestGetPosts(t *testing.T) {
 
 	for i, test := range testCases {
 		var posts []*models.Post
-		if test.groupID == "" && test.authorID == ""  {
+		if test.groupID == "" && test.authorID == "" {
 			posts, err = f.GetPostsNoGroup(test.currUserID, 20, 0)
 			if err != nil {
 				t.Fatal(err)
 			}
-		} 
-		if test.groupID != "" && test.authorID == ""  {
+		}
+		if test.groupID != "" && test.authorID == "" {
 			posts, err = f.GetPostsInGroup(test.groupID, test.currUserID, 20, 0)
 			if err != nil {
 				t.Fatal(err)
 			}
 		}
-		if test.groupID == "" && test.authorID != ""  {
+		if test.groupID == "" && test.authorID != "" {
 			posts, err = f.GetUserPosts(test.authorID, test.currUserID, 20, 0)
 			if err != nil {
 				t.Fatal(err)

@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"time"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/helpers"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/models"
+	"social-network/backend/pkg/db/sqlite/helpers"
+	"social-network/backend/pkg/db/sqlite/models"
 )
 
 /*creates a new chat for the given users */
@@ -97,11 +97,11 @@ func (dbm *DBModel) GetPrivateChat(usrID1, usrID2 string) (models.Chat, error) {
 			LEFT JOIN users ON mb1.userID = users.id
 			WHERE mb1.userID=?
 	`
-	// TODO old query q := `SELECT chatID, users.userName  
-			// FROM chat_members mb
-			// LEFT JOIN users ON mb.userID = users.id
-			// WHERE mb.userID=?
-			//   AND chatID IN (SELECT chatID FROM chat_members cmb WHERE cmb.userID=?) 
+	// TODO old query q := `SELECT chatID, users.userName
+	// FROM chat_members mb
+	// LEFT JOIN users ON mb.userID = users.id
+	// WHERE mb.userID=?
+	//   AND chatID IN (SELECT chatID FROM chat_members cmb WHERE cmb.userID=?)
 	// `//usrID2, usrID1
 
 	row := dbm.DB.QueryRow(q, usrID1, usrID2)

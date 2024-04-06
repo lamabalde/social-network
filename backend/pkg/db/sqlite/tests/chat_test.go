@@ -6,9 +6,9 @@ import (
 	"testing"
 	"time"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/models"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/queries"
+	"social-network/backend/pkg/db/sqlite"
+	"social-network/backend/pkg/db/sqlite/models"
+	"social-network/backend/pkg/db/sqlite/queries"
 )
 
 func TestGetChatMessagesByUsersIds(t *testing.T) {
@@ -73,8 +73,8 @@ func TestGetChatMessagesByUsersIds(t *testing.T) {
 		},
 	}
 
-	expRes.Messages=  expmess
-	
+	expRes.Messages = expmess
+
 	if !reflect.DeepEqual(expRes, chat) {
 		t.Fatalf("Expected\n %v, got\n %v", &expRes, &chat)
 	}
@@ -98,7 +98,7 @@ func TestGetChatMessagesByUsersIds(t *testing.T) {
 		},
 	}
 
-	expRes.Messages=  expmess
+	expRes.Messages = expmess
 	if !reflect.DeepEqual(expRes, chat) {
 		t.Fatalf("Expected\n %v, got\n %v", expRes, chat)
 	}
@@ -136,7 +136,7 @@ func TestGetChatMessagesByUsersIds(t *testing.T) {
 			UserName:   "no",
 			DateCreate: time.Date(2023, time.November, 24, 10, 59, 33, 656479916, time.UTC),
 		},
-	
+
 		{
 			ID:         "8",
 			Content:    "hello from 1 to 3",
@@ -145,12 +145,11 @@ func TestGetChatMessagesByUsersIds(t *testing.T) {
 			DateCreate: time.Date(2023, time.November, 23, 10, 59, 33, 656479916, time.UTC),
 		},
 	}
-	expRes.Messages=expmess
+	expRes.Messages = expmess
 	chat.Messages, err = f.GetPrivateChatMessagesByChatId(chat.ID, 3, 0)
 	if err != nil {
 		t.Fatal(err)
 	}
-
 
 	if !reflect.DeepEqual(expRes, chat) {
 		t.Fatalf("Expected\n %v,\n got\n %v", expRes, chat)

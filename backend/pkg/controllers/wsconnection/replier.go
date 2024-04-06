@@ -3,8 +3,8 @@ package wsconnection
 import (
 	"log"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/controllers/wshub"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/webmodel"
+	"social-network/backend/pkg/controllers/wshub"
+	"social-network/backend/pkg/webmodel"
 )
 
 type Replier interface {

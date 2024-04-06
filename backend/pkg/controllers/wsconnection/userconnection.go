@@ -3,10 +3,10 @@ package wsconnection
 import (
 	"encoding/json"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/controllers/wshub"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/helpers"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/session"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/webmodel"
+	"social-network/backend/pkg/controllers/wshub"
+	"social-network/backend/pkg/helpers"
+	"social-network/backend/pkg/session"
+	"social-network/backend/pkg/webmodel"
 )
 
 type UsersConnection struct {
@@ -14,8 +14,6 @@ type UsersConnection struct {
 	Client   *wshub.Client
 	WsServer WSmux
 }
-
-
 
 /*
 sends uc.Client a successful reply to the requestMessage with the data as payload

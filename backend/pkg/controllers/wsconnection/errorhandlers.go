@@ -6,7 +6,7 @@ import (
 	"runtime"
 	"runtime/debug"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/webmodel"
+	"social-network/backend/pkg/webmodel"
 )
 
 // WSError sends to the front-end side websocket connection `conn` a message of  type 'ERROR'  with the Payload= `errmessage`. It also logs the `errmessage` and `err` to the uc.WsServer.ErrLog logger.

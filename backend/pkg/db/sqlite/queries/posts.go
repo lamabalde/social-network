@@ -7,8 +7,8 @@ import (
 	"reflect"
 	"strings"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/helpers"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/models"
+	"social-network/backend/pkg/db/sqlite/helpers"
+	"social-network/backend/pkg/db/sqlite/models"
 )
 
 const (
@@ -208,7 +208,7 @@ func (dbm *DBModel) GetPostsByCondition(condition string, argumentsForCondition 
 	// exequting the query
 	var rows *sql.Rows
 	var err error
-	arguments := append([]any{userIDForReaction,userIDForReaction, userIDForReaction, userIDForReaction, userIDForReaction}, argumentsForCondition...)
+	arguments := append([]any{userIDForReaction, userIDForReaction, userIDForReaction, userIDForReaction, userIDForReaction}, argumentsForCondition...)
 	arguments = append(arguments, limit, offset)
 	rows, err = dbm.DB.Query(query, arguments...)
 	if err != nil {
@@ -256,7 +256,7 @@ func scanRowToPost(rows *sql.Rows) (*models.Post, error) {
 	err := rows.Scan(&postID, &theme, &content, &images, &category,
 		&userID, &userName,
 		&postCreate, &commentsQuantity,
-		&groupID, &privacy, 
+		&groupID, &privacy,
 		&post.Content.Likes[models.LIKE], &post.Content.Likes[models.DISLIKE],
 		&post.Content.UserReaction,
 	)
@@ -290,7 +290,6 @@ func assemblePost(post *models.Post, postID, theme, content, images, category, u
 	post.Content.DateCreate = postCreate.Time
 	post.GroupID = groupID.String
 	post.Privacy = int(privacy.Int64)
-
 
 	return post
 }

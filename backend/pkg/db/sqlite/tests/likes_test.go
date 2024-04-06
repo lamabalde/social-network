@@ -6,9 +6,9 @@ import (
 	"reflect"
 	"testing"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/models"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/queries"
+	"social-network/backend/pkg/db/sqlite"
+	"social-network/backend/pkg/db/sqlite/models"
+	"social-network/backend/pkg/db/sqlite/queries"
 )
 
 func TestLikes(t *testing.T) {
@@ -25,7 +25,7 @@ func TestLikes(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	err = printLikes(f,"posts_likes")
+	err = printLikes(f, "posts_likes")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -35,7 +35,7 @@ func TestLikes(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	err = printLikes(f,"posts_likes")
+	err = printLikes(f, "posts_likes")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -45,7 +45,7 @@ func TestLikes(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	err = printLikes(f,"posts_likes")
+	err = printLikes(f, "posts_likes")
 	if err != nil {
 		t.Fatal(err)
 	}

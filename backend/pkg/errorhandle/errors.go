@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"runtime/debug"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/application"
+	"social-network/backend/application"
 )
 
 func NotFound(app *application.Application, w http.ResponseWriter, r *http.Request) {

@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"strings"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/application"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/controllers/wsconnection"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/models"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/webmodel"
+	"social-network/backend/application"
+	"social-network/backend/pkg/controllers/wsconnection"
+	"social-network/backend/pkg/db/sqlite/models"
+	"social-network/backend/pkg/webmodel"
 )
 
 // All functions of this package send an error message to the websocket connection given in 'currConnection' parameter,

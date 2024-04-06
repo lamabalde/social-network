@@ -1,4 +1,4 @@
-module 01.kood.tech/git/Hems_Chrisworth/social-network/backend
+module social-network/backend
 
 go 1.21
 
