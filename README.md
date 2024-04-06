@@ -59,14 +59,14 @@ Then, please follow these steps:
 You can use the following user accounts for testing, but we recommend creating your own for better user experience:
 
 
-|  Username  |  Password  |    E-mail    |
-|------------|------------|--------------|
-| fallou     | fallou     | fallou@mail.com|
-| test       | test       | test@mail.com |
-| John       | John       | John@John.John|
-| kickstart  | kickstart  | Mary@Mary.Mary|
-|crystalman99| Jesse      | Jesse@Jesse.Jesse|
-| thaMan     | Benton     | Benton@Benton.Benton|
+|  Username  |  Password  |    E-mail        |
+|------------|------------|--------------    |
+| fallou     | fallou     | fallou@mail.com  |
+| test       | test       | test@mail.com    |
+| serwade    | serwade    | serwade@gmail.com|
+| mabalde    | mabalde    | mabalde@mail.com |
+|daibou      | daibou     | daibou@gmail.com |
+| ndiagaba   | ndiagaba   | ndiaga@gmail.com |
 <br>
 
 ## Authors
