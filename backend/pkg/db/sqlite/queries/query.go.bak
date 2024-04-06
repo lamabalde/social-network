@@ -1,0 +1,71 @@
+package queries
+
+import (
+	"log"
+
+	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite"
+	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/helpers"
+	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/models"
+)
+
+func GetUserNameFromID(userID string) string {
+	userName := ""
+	err := sqlite.DB.QueryRow("SELECT userName FROM users WHERE userID = ?", userID).Scan(&userName)
+	if err != nil {
+		log.Println(err)
+		return ""
+	}
+	return userName
+}
+
+func GetUserIDFromSession(cookie string) (string, error) {
+	userID := ""
+	err := sqlite.DB.QueryRow(getUserIDFromSession, cookie).Scan(&userID)
+	if err != nil {
+		return "", err
+	}
+	return userID, err
+}
+
+func CheckUserCredentials(user models.User) (string, error) { // when logging in, return userID from database to the frontend client
+	credentials := struct {
+		userID        string
+		password_hash []byte
+	}{}
+	err := sqlite.DB.QueryRow(checkUserCredsQuery, user.Username, user.Username).Scan(&credentials.userID, &credentials.password_hash)
+	if err != nil {
+		return "", err
+	}
+	if err = helpers.CompareHashToPassword(credentials.password_hash, user.Password); err != nil { // check password
+		return "", err
+	}
+	return credentials.userID, err
+}
+
+func GetUserPostsFromDB(userID string) ([]models.Post, error) {
+	var posts = []models.Post{}
+	rows, err := sqlite.DB.Query(getUserPostsQuery, userID)
+	if err != nil {
+		return posts, err
+	}
+	for rows.Next() {
+		var post models.Post
+		rows.Scan(&post.PostID, &post.UserID, &post.Title, &post.Body, &post.Categories, &post.TimeStamp)
+		posts = append(posts, post)
+	}
+	return posts, nil
+}
+
+func GetAllPostsFromDB() ([]models.Post, error) {
+	var posts = []models.Post{}
+	rows, err := sqlite.DB.Query(getAllPostsQuery)
+	if err != nil {
+		return posts, err
+	}
+	for rows.Next() {
+		var post models.Post
+		rows.Scan(&post.PostID, &post.UserID, &post.Title, &post.Body, &post.Categories, &post.TimeStamp)
+		posts = append(posts, post)
+	}
+	return posts, nil
+}

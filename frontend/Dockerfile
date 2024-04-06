@@ -1,13 +1,18 @@
-FROM node:18.15-alpine3.17 as base
+FROM node:lts-alpine
+
 WORKDIR /frontend
+
+# Copy only the necessary files initially (package.json and package-lock.json)
 COPY package*.json ./
-RUN npm ci \
-    && npm cache clean --force
-FROM base as dev
-ENV NODE_ENV=development
-ENV PATH /frontend/node_modules/.bin:$PATH
-RUN npm i --only=development \
-    && npm cache clean --force
-RUN npm config list
+
+# Install dependencies
+RUN npm install
+
 COPY . .
-CMD ["npm", "start"]
+
+RUN npm run build
+
+EXPOSE 8080
+
+CMD ["npm", "run", "dev"]
+#CMD ["npm", "start"]

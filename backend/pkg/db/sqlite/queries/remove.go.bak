@@ -1,0 +1,16 @@
+package queries
+
+import (
+	"net/http"
+
+	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite"
+)
+
+func DeleteCookieFromDB(cookie *http.Cookie) error {
+	_, err := sqlite.DB.Exec(deleteSessionQuery, cookie.Value)
+	return err
+}
+
+func DeletePostFromDB() {
+
+}

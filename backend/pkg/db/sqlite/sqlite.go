@@ -1,159 +1,276 @@
-package db
+package sqlite
 
 import (
 	"database/sql"
-	"encoding/json"
+	"errors"
 	"fmt"
-	"io/ioutil"
-	"log"
-	"net/http"
-	"runtime"
+	"os"
+	"sort"
 	"strconv"
+	"strings"
+
+	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/models"
+	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/queries"
 
 	"github.com/golang-migrate/migrate/v4"
-	_ "github.com/golang-migrate/migrate/v4/database/sqlite3"
+	_ "github.com/golang-migrate/migrate/v4/database"
+	"github.com/golang-migrate/migrate/v4/database/sqlite3"
 	_ "github.com/golang-migrate/migrate/v4/source/file"
+	_ "github.com/mattn/go-sqlite3"
 )
 
-type User struct {
-	ID        int    `json:"id"`
-	FirstName string `json:"firstName"`
-	LastName  string `json:"lastName"`
-	NickName  string `json:"nickName"`
-	Email     string `json:"email"`
-	Password  string `json:"password"`
-	Dob       string `json:"dob"`
-	Image     string `json:"image"`
-	About     string `json:"about"`
-	Public    bool   `json:"public"`
-}
+const (
+	DBFileName    = "pkg/db/social-network.db"
+	TestDB        = "pkg/db/testDB.db"
+	MigratePath   = "pkg/db/migrations/sqlite"
+	MigrateTestDB = "pkg/db/migrations/testDB"
+)
 
-type Post struct {
-	ID        int    `json:"id"`
-	Author    int    `json:"userId"`
-	CreatedAt string `json:"createdAt"`
-	Message   string `json:"message"`
-	Image     string `json:"image"`
-	Privacy   bool   `json:"privacy"`
-}
-
-var db *sql.DB
-
-var m *migrate.Migrate
-
-// run migrations
-
-func RunMigration() *migrate.Migrate {
-	file := "file://pkg/db/migration/sqlite"
-	sqlite := "sqlite3://pkg/db/database.db"
-	if runtime.GOOS == "darwin" {
-		file = "file://../../pkg/db/migration/sqlite"
-		sqlite = "sqlite3://../../pkg/db/database.db"
+func InitDB(test bool, versionDB int) (*queries.DBModel, error) { // have go-migrate run all the up migrations
+	var err error
+	if test {
+		return CreateTestDB()
 	}
-	m, err := migrate.New(file, sqlite)
 
+	DB, err := OpenDatabase(DBFileName)
 	if err != nil {
-		fmt.Print(err.Error())
+		return nil, err
 	}
 
-	m.Up()
-
-	return m
-}
-
-// remove migrations
-
-func RemoveMigration(m *migrate.Migrate) {
-	m.Migrate(16)
-}
-
-// connect to database
-
-func DbConnect() *sql.DB {
-	if runtime.GOOS == "darwin" {
-		db, err := sql.Open("sqlite3", "../../pkg/db/database.db")
-		if err != nil {
-			log.Fatal(err)
-		}
-		return db
-	} else {
-		db, err := sql.Open("sqlite3", "pkg/db/database.db")
-		if err != nil {
-			log.Fatal(err)
-		}
-		return db
+	dbModel := &queries.DBModel{DB: DB}
+	if versionDB != 0 {
+		return migrateToVersion(dbModel, versionDB)
 	}
+
+	applyUpMigrations(dbModel.DB, MigratePath)
+
+	return dbModel, nil
 }
 
-// insert mock user data
-
-func InsertMockUserData() {
-
-	// fetch api for mock data
-
-	var res *http.Response
-
-	res, _ = http.Get("https://63f35a0e864fb1d60014de90.mockapi.io/users")
-
-	resData, _ := ioutil.ReadAll(res.Body)
-
-	// Unmarshall http response
-
-	var responseObject []User
-
-	json.Unmarshal(resData, &responseObject)
-
-	// insert into database
-
-	db := DbConnect()
-
-	for _, user := range responseObject {
-
-		stmt, err := db.Prepare("INSERT INTO user(first_name, last_name, nick_name, email, password_, dob, image_, about, public) VALUES(?,?,?,?,?,?,?,?,?);")
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		defer stmt.Close()
-
-		stmt.Exec(user.FirstName, user.LastName, user.NickName, user.Email, user.Password, user.Dob, user.Image, user.About, 1)
+func OpenDatabase(fileName string) (*sql.DB, error) {
+	// init pull (not connection)
+	db, err := sql.Open("sqlite3", fmt.Sprintf("file:%s?_foreign_keys=on", fileName))
+	if err != nil {
+		return nil, err
 	}
+
+	// check connection (create and check)
+	err = db.Ping()
+	if err != nil {
+		return nil, err
+	}
+
+	return db, nil
 }
 
-// insert mock post data
+func deleteTestDataFromDB(db *sql.DB) error {
+	return applyDownMigrations(db, MigrateTestDB)
+}
 
-func InsertMockPostData() {
+func dropDB(db *sql.DB) error {
+	return applyDownMigrations(db, MigratePath)
+}
 
-	// fetch api for mock data
+func applyUpMigrations(db *sql.DB, path string) error {
+	driver, err := sqlite3.WithInstance(db, &sqlite3.Config{})
+	if err != nil {
+		return fmt.Errorf("error opening driver: %v", err)
+	}
 
-	// iteration for 50 users
-	for i := 1; i < 51; i++ {
-		var res *http.Response
+	migration, err := migrate.NewWithDatabaseInstance(
+		"file://"+path,
+		"sqlite3", driver)
+	if err != nil {
+		return fmt.Errorf("error creating instance: %v", err)
+	}
 
-		res, _ = http.Get("https://63f35a0e864fb1d60014de90.mockapi.io/users/" + strconv.Itoa(i) + "/posts")
+	if err = migration.Up(); err != nil && err != migrate.ErrNoChange {
+		return fmt.Errorf("error migrating database: %v", err)
+	}
+	return nil
+}
 
-		resData, _ := ioutil.ReadAll(res.Body)
+func applyDownMigrations(db *sql.DB, path string) error {
+	driver, err := sqlite3.WithInstance(db, &sqlite3.Config{})
+	if err != nil {
+		return fmt.Errorf("error opening driver: %v", err)
+	}
 
-		// Unmarshall http response
+	migration, err := migrate.NewWithDatabaseInstance(
+		"file://"+path,
+		"sqlite3", driver)
+	if err != nil {
+		return fmt.Errorf("error creating instance: %v", err)
+	}
 
-		var responseObject []Post
+	if err = migration.Down(); err != nil && err != migrate.ErrNoChange {
+		return fmt.Errorf("error migrating database: %v", err)
+	}
+	return nil
+}
 
-		json.Unmarshal(resData, &responseObject)
+func applySpecificMigrations(db *sql.DB, path string, amount int) error {
+	driver, err := sqlite3.WithInstance(db, &sqlite3.Config{})
+	if err != nil {
+		return fmt.Errorf("error opening driver: %v", err)
+	}
 
-		// insert into database
-		db := DbConnect()
+	migration, err := migrate.NewWithDatabaseInstance(
+		"file://"+path,
+		"sqlite3", driver)
+	if err != nil {
+		return fmt.Errorf("error creating instance: %v", err)
+	}
 
-		for _, post := range responseObject {
+	if err = migration.Steps(amount); err != nil && err != migrate.ErrNoChange { // if there is no change, then it continues starting the DB
+		return fmt.Errorf("error migrating database: %v", err)
+	}
 
-			stmt, err := db.Prepare("INSERT INTO post(author, message_, image_, created_at, privacy) VALUES(?,?,?,?,?);")
-			if err != nil {
-				log.Fatal(err)
+	return nil
+}
+
+func handleErrAndCloseDB(db *sql.DB, operation string, err error) error {
+	errClose := db.Close()
+	if errClose != nil {
+		return fmt.Errorf("'%s' failed: %w, unable to close DB: %w", operation, err, errClose)
+	}
+	return fmt.Errorf("DB was closed cause the '%s' failed: %w", operation, err)
+}
+
+/*
+fills in the DB with data from the given file
+*/
+func FillInTestDB(db *queries.DBModel, path string) error {
+	ForceMigrate(db, 1000)
+	return applyUpMigrations(db.DB, path)
+}
+
+func ForceMigrate(db *queries.DBModel, version int) error {
+	driver, err := sqlite3.WithInstance(db.DB, &sqlite3.Config{})
+	if err != nil {
+		return fmt.Errorf("filling DB: error opening driver: %v", err)
+	}
+
+	migration, err := migrate.NewWithDatabaseInstance(
+		"file://"+MigratePath,
+		"sqlite3", driver)
+	if err != nil {
+		return fmt.Errorf("filling DB: error creating instance: %v", err)
+	}
+
+	err = migration.Force(version)
+	if err != nil {
+		return fmt.Errorf("filling DB: error forcing the version of database: %v", err)
+	}
+	return nil
+}
+
+func CreateDB(fileDB, createMigrationPath, dataMigrationPath string, dataVersion int) (*queries.DBModel, error) {
+	var err error
+	DB, err := OpenDatabase(fileDB)
+	if err != nil {
+		return nil, fmt.Errorf("open database %s failed: %v", fileDB, err)
+	}
+
+	dbModel := &queries.DBModel{DB: DB}
+	if err := applyUpMigrations(dbModel.DB, createMigrationPath); err != nil { // this migrates all the way to the latest version
+		return nil, fmt.Errorf("apply up migration from %v failed: %v", createMigrationPath, err)
+	}
+
+	err = FillInTestDB(dbModel, dataMigrationPath)
+	return dbModel, err
+}
+
+func CreateTestDB() (*queries.DBModel, error) {
+	DB, err := OpenDatabase(TestDB)
+	if err != nil {
+		return nil, err
+	}
+
+	dbModel := &queries.DBModel{DB: DB}
+
+	ok := dbModel.CheckExistingTable("schema_migrations")
+	if ok {
+		migr, err := dbModel.GetMigrationVersion()
+		if err == nil && migr.Version > 1000 {
+			if err := applyUpMigrations(dbModel.DB, MigrateTestDB); err != nil { // this migrates all the way to the latest version
+				return nil, fmt.Errorf("apply up migration from %v failed: %v", MigratePath, err)
 			}
-
-			defer stmt.Close()
-
-			stmt.Exec(i, post.Message, post.Image, post.CreatedAt, 0)
+			return dbModel, nil
 		}
 	}
 
+	if err := applyUpMigrations(dbModel.DB, MigratePath); err != nil { // this migrates all the way to the latest version
+		return nil, fmt.Errorf("apply up migration from %v failed: %v", MigratePath, err)
+	}
+
+	err = FillInTestDB(dbModel, MigrateTestDB)
+	return dbModel, err
+}
+
+func printMigrationVersion(dbModel *queries.DBModel) (models.Migration, error) {
+	migr, err := dbModel.GetMigrationVersion()
+	if err != nil {
+		fmt.Printf("cant get migration version: %v\n", err)
+		return migr, err
+	}
+	fmt.Printf("migration version: %v\n", migr)
+	return migr, err
+}
+
+func migrateToVersion(dbModel *queries.DBModel, versionDB int) (*queries.DBModel, error) {
+	currentVersion, err := printMigrationVersion(dbModel)
+	if err != nil {
+		return nil, err
+	}
+
+	if currentVersion.Dirty == 1 {
+		return nil, errors.New("the migration version is dirty")
+	}
+
+	if versionDB >= 1000 && currentVersion.Version < 1000 {
+		applyUpMigrations(dbModel.DB, MigratePath)
+		printMigrationVersion(dbModel)
+		ForceMigrate(dbModel, 1000)
+		currentVersion, _ = printMigrationVersion(dbModel)
+	}
+	if versionDB < 1000 && currentVersion.Version >= 1000 {
+		applyDownMigrations(dbModel.DB, MigrateTestDB)
+		printMigrationVersion(dbModel)
+		vers, err := getLastMigrationVersionInDir(MigratePath)
+		if err != nil {
+			return nil, err
+		}
+		ForceMigrate(dbModel, vers)
+		currentVersion, _ = printMigrationVersion(dbModel)
+	}
+
+	migrPath := MigratePath
+	if versionDB >= 1000 {
+		migrPath = MigrateTestDB
+	}
+	applySpecificMigrations(dbModel.DB, migrPath, versionDB-currentVersion.Version)
+	printMigrationVersion(dbModel)
+
+	return dbModel, nil
+}
+
+func getLastMigrationVersionInDir(dir string) (int, error) {
+	files, err := os.ReadDir(dir)
+	if err != nil {
+		return 0, err
+	}
+
+	numbers := make([]int, len(files))
+
+	for i, file := range files {
+
+		numbers[i], err = strconv.Atoi(strings.Split(file.Name(), "_")[0])
+		if err != nil {
+			return 0, err
+		}
+	}
+
+	sort.Ints(numbers)
+	return numbers[len(numbers)-1], nil
 }

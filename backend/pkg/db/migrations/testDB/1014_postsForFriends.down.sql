@@ -1,0 +1,1 @@
+DELETE FROM posts WHERE id LIKE 'fr%' OR id LIKE 'pr%';

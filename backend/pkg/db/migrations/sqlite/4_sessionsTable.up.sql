@@ -1,0 +1,9 @@
+CREATE TABLE 'sessions' ( 
+	id TEXT PRIMARY KEY NOT NULL,
+	userID TEXT NOT NULL,
+	expirySession TIMESTAMP NOT NULL,
+	agent TEXT,
+	FOREIGN KEY (userID) REFERENCES users(id) 
+         ON UPDATE CASCADE
+         ON DELETE CASCADE
+);

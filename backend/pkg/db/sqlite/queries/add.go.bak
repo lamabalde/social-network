@@ -1,0 +1,69 @@
+package queries
+
+import (
+	"strings"
+
+	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite"
+	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/helpers"
+	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/models"
+)
+
+func AddUserToDatabase(user models.User) error {
+	// check if user exists
+	userID, err := helpers.GenerateNewUUID()
+	if err != nil {
+		return err
+	}
+	password_hash, err := helpers.HashPassword(user.Password)
+	if err != nil {
+		return err
+	}
+	if _, err = sqlite.DB.Exec(insertUserQuery, userID, user.Email, user.Username, password_hash); err != nil {
+		return err
+	}
+	return err
+}
+
+func AddSessionToDatabase(userID, cookie string) error {
+	_, err := sqlite.DB.Exec("INSERT INTO sessions (userID, sessionID) VALUES (?, ?)", userID, cookie)
+	if err != nil {
+		return err
+	}
+	return err
+}
+
+func AddPostToDatabase(post models.Post) (models.Post, error) { // main post adding function, return true if post added successfully, false if failed
+	joinedCats := strings.Join(post.Categories, ";")
+	post.TimeStamp = helpers.GetCurrentTime()
+	uuid, err := helpers.GenerateNewUUID()
+	if err != nil {
+		return post, err
+	}
+	post.UserName = GetUserNameFromID(post.UserID)
+	post.PostID = uuid
+	post.Comments = []models.Comment{}
+	_, err = sqlite.DB.Exec(addPostQuery,
+		post.PostID, post.UserID, post.Title, post.Body, joinedCats, post.TimeStamp, "")
+	if err != nil {
+		return post, err
+	}
+	return post, err // return the post as a response with the new postID, timestamp etc
+}
+
+func AddCommentToDatabase(comment models.Comment) (models.Comment, error) {
+	uuid, err := helpers.GenerateNewUUID()
+	comment.CommentID = uuid
+	comment.TimeStamp = helpers.GetCurrentTime()
+	if err != nil {
+		return comment, err
+	}
+	_, err = sqlite.DB.Exec(addCommentQuery,
+		comment.CommentID, comment.PostID, comment.UserID, comment.Body, comment.TimeStamp)
+	if err != nil {
+		return comment, err
+	}
+	if err != nil {
+		return comment, err
+	}
+	return comment, nil
+}

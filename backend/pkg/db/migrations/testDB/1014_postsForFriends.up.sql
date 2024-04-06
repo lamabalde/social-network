@@ -1,0 +1,8 @@
+INSERT INTO posts (id, theme,content,category,userID, dateCreate, commentsQuantity,postType) VALUES ('fr1','postForFriend1#1', 'text', '', '1', '2023-03-21 14:41:04.656479916+00:00',0, 2);
+INSERT INTO posts (id, theme,content,category,userID, dateCreate, commentsQuantity,postType) VALUES ('fr2','postForFriend1#2', 'text', '', '1', '2023-03-22 10:41:23.656479916+00:00',0, 2);
+INSERT INTO posts (id, theme,content,category,userID, dateCreate, commentsQuantity,postType) VALUES ('fr3','postForFriend2#1', 'text', '', '2', '2023-03-22 10:41:23.656479916+00:00',0, 2);
+INSERT INTO posts (id, theme,content,category,userID, dateCreate, commentsQuantity,postType) VALUES ('fr4','postForFriend2#2', 'text', '', '2', '2023-03-22 10:41:23.656479916+00:00',0, 2);
+INSERT INTO posts (id, theme,content,category,userID, dateCreate, commentsQuantity,postType) VALUES ('pr1','postPrivate2#1', 'text', '', '2', '2023-03-22 10:41:23.656479916+00:00',  0, 1);
+INSERT INTO posts (id, theme,content,category,userID, dateCreate, commentsQuantity,postType) VALUES ('pr2','postPrivate1#1', 'text', '', '1', '2023-03-22 10:41:23.656479916+00:00',0, 1);
+INSERT INTO posts (id, theme,content,category,userID, dateCreate, commentsQuantity,postType) VALUES ('fr5','postForFriend3#1', 'text', '', '3', '2023-03-22 10:41:23.656479916+00:00',0, 2);
+INSERT INTO posts (id, theme,content,category,userID, dateCreate, commentsQuantity,postType) VALUES ('pr3','postPrivate3#1', 'text', '', '3', '2023-03-22 10:41:23.656479916+00:00',0, 1);

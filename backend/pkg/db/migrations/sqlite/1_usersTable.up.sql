@@ -1,0 +1,12 @@
+CREATE TABLE users (
+    id TEXT PRIMARY KEY NOT NULL,
+	userName TEXT NOT NULL,
+	email TEXT NOT NULL UNIQUE,
+	password_hash TEXT NOT NULL,
+	dateCreate TIMESTAMP NOT NULL,
+	dateBirth TIMESTAMP NOT NULL,
+	gender TEXT NOT NULL,    
+	firstName TEXT NOT NULL,
+	aboutMe TEXT NOT NULL,
+	lastName TEXT NOT NULL
+);

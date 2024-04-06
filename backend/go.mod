@@ -1,22 +1,18 @@
-module backend
+module 01.kood.tech/git/Hems_Chrisworth/social-network/backend
 
-go 1.19
+go 1.21
 
 require (
-	github.com/golang-migrate/migrate/v4 v4.15.2
-	github.com/gorilla/websocket v1.4.2
+	github.com/golang-migrate/migrate/v4 v4.16.2
+	github.com/google/uuid v1.4.0
+	github.com/gorilla/websocket v1.5.1
+	github.com/mattn/go-sqlite3 v1.14.18
+	golang.org/x/crypto v0.15.0
 )
-
-require github.com/rs/cors v1.10.1 // indirect
 
 require (
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
-	github.com/lib/pq v1.10.7 // indirect
-	github.com/mattn/go-sqlite3 v1.14.16 // indirect
-	github.com/satori/go.uuid v1.2.0
-	github.com/stretchr/testify v1.8.0 // indirect
-	go.uber.org/atomic v1.10.0 // indirect
-	golang.org/x/crypto v0.7.0
-
+	go.uber.org/atomic v1.11.0 // indirect
+	golang.org/x/net v0.18.0 // indirect
 )

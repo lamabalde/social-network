@@ -1,93 +1,75 @@
-# Social Network Application
+# Social-Network
 
-This is a Facebook-like social network application built using React for the frontend and Golang for the backend.
+## Introduction
 
-It is hosting on https://socialnetwork-z01.netlify.app/
-Note: The websocket is working in localhost, but works inconsistently when hosted.
+This is a project of social network website. Users can create their profiles, write and comment posts in a general feed and in groups, create group events and send private messages.
 
-## Features
+Here you can find the [task description](https://github.com/01-edu/public/tree/master/subjects/social-network) and [>>> AUDIT QUESTIONS <<<](https://github.com/01-edu/public/tree/master/subjects/social-network/audit).
 
-The application includes the following features:
+<br>
 
-- User registration and login with sessions and cookies for authentication
-- User profiles with public and private settings
-- Ability to follow/unfollow other users
-- Creation of posts and comments with privacy settings
-- Creation of groups with invitations and requests
-- Real-time private and group messaging using Websocket
-- Notifications for following requests, group invitations and requests, and group events using Websocket
-- Dockerized deployment with separate backend and frontend images
+### Used technologies
 
-## Technologies Used
+**JavaScript** with **Vue.js** as its framework <br>
+**CSS** and **Tailwind CSS** <br>
+**Vite server** for the front-end part <br>
+**Go** for handling all the requests and responses on back-end <br>
+**SQLite3** for handling all the back-end database operations <br>
 
-- Frontend: React (JavaScript framework)
-- Backend: Golang (Go programming language)
-- Database: SQLite
-- WebSocket: Gorilla WebSocket package
-- Migration: golang-migrate package
-- Authentication: Sessions and cookies
-- Containerization: Docker
+<br>
 
-## Chat rules
+### After registering a profile, users can:
 
-- The user should be able to send private messages to users that he/she is following
-- The user that the message was sent to, will receive the message instantly, if he/she is following the user that sent the message (shown under "Users You Are Following:") or if the user has a public profile (shown under "Other Users:")
-- if the user is not following the user that sent the message and if the user doesn't have a public profile, the message is stored the database, and it will be shown when he/she starts following the user that sent the message or if the user switches his/her profile to public 
-- If a public user switch his/her profile back to private, he/she can still continue on the existing conversations (even if he/she didn't send any messages)
-- Groups should have a common chat room, so if a user is a member of the group he/she should be able to send and receive messages to this group chat.
+- Set up profile visibility
+- Follow other users
+- Add best friends
+- Create posts in general feed
+- Set up a visibility for each created post
+- Write comments to other posts
+- Create groups
+- Join existing groups
+- Create group events
+- Mark if user will go to an event or not
+- Send private messages to other users
+- Participate in group chats
+- See notifications of important updates
+- ** To select specific people that see posts, use the 'close friends' functionality once a user is following you.
+
+<br>
+
+## How to launch
+
+You may need to install [Docker](https://www.docker.com/get-started/) and [Node.js](https://nodejs.org/en) to proceed.
+
+Then, please follow these steps:
+
+1. Open the project folder in a code editor like VS Code
+2. Launch your Docker app
+
+3. Open a terminal
+4. Type `docker compose up`
+5. Open [http://localhost:8080/](http://localhost:8080/) in your web browser
+
+6. Nice, you did it! The social network is now launched! 😀
+
+7. To stop the app, press `Ctrl+C` while focused on terminal
+
+<br>
+
+You can use the following user accounts for testing, but we recommend creating your own for better user experience:
 
 
+|  Username  |  Password  |    E-mail    |
+|------------|------------|--------------|
+| John       | John       | John@John.John|
+| kickstart  | kickstart  | Mary@Mary.Mary|
+|crystalman99| Jesse      | Jesse@Jesse.Jesse|
+| thaMan     | Benton     | Benton@Benton.Benton|
+<br>
 
+## Authors
 
-
-## Social Network Application
-  #Application 
-
-
-
-#landing-header {
-    display:flex;
-    justify-content: space-between;
-    background-color:aliceblue;
-    padding:25px 30px;
-    height:30px;
-}
-
-#landing-label {
-    font-size: 24px;
-    color: rgb(4, 75, 137);
-    font-family: 'Vina Sans', cursive;
-    font-size:38px;
-    position: relative;
-    top:-10px;
-}
-
-.landing-button {
-    background-color: aliceblue;
-    border: none;
-    border: 1px solid rgb(179, 179, 179);
-    padding:0 20px;
-    height:42px;
-    margin-right:20px;
-    position: relative;
-    top:-6px;
-    font-size:16px;
-    transition: 0.3s;
-}
-
-.landing-button:hover {
-    background-color: rgb(201, 229, 254);
-    transition: 0.3s;
-    transform: scale(1.1);
-}
-
-#landing-bg {
-    position: absolute;
-    top:0;
-    left:0;
-    background-image: url("./sn-img.jpeg");
-    opacity: 0.4;
-    width:100vw;
-    height: calc(100vh - 80px);
-    z-index: -1;
-}
+- [mouhamadoufadiop](https://learn.zone01dakar.sn/git/mouhamadoufadiop)
+- [mabalde](https://learn.zone01dakar.sn/git/mabalde)
+- [serwade](https://learn.zone01dakar.sn/git/serwade)
+- [daibouba](https://learn.zone01dakar.sn/git/mabalde)

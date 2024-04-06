@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.sideBar {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    margin-top: 4rem;
+    background-color: rgb(255, 255, 255);
+    border-right: solid rgb(226, 232, 240) 1px;
+    left: 0;
+    height: 100vh;
+    width: 240px;
+    margin-right: 20%;
+    /* padding: 1rem; */
+}
+
+.hoverButton {
+    transition: 0.2;
+}
+.hoverButton:hover {
+    transform: scale(0.98);
+}
+.centerContent {
+    margin-left: 24.5vw;
+    margin-top: 30px;
+    width: 50vw;
+}
+.gradient-container {
+    background: rgb(66, 57, 85);
+    background: linear-gradient(196deg, rgba(228,183,96,1) 0%, rgba(214,136,134,1) 29%, rgba(201,95,161,1) 50%, rgba(146,67,169,1) 72%, rgba(74,26,186,1) 100%);
+}
+
+.chatlist {
+    transition: 0.2s;
+}
+.chatlist:hover {
+    border-radius: 50px;
+    background-color: rgb(225, 225, 225);
+}
+
+.gradient-animation {
+    background: linear-gradient(45deg, #008cff, #ec3258, #fcda00);
+    background-size: 400% 400%;
+    animation: gradient 6s ease infinite;
+}
+@keyframes gradient {
+    0% {
+        background-position: 0 50%;
+    }
+    20% {
+        background-position: 20% 50%;
+    }
+    40% {
+        background-position: 40% 50%;
+    }
+    60% {
+        background-position: 60% 50%;
+    }
+    80% {
+        background-position: 80% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
+}
+
+input:not([type=submit]),textarea {
+    color: black;
+}
+
+input[type=submit] {
+    cursor: pointer;
+}
