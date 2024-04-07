@@ -15,8 +15,8 @@ import { sendRegister } from '../js_modules/requests.js';
         <div class="flex flex-col items-center justify-center">
             <form id="registerForm" @submit.prevent="handleRegister" class="bg-slate-100 p-6 rounded-md shadow-xl w-1/4 mx-auto ">
                 <input type="email" name="email" placeholder="Email*" class="w-full p-3 mb-4 border border-gray-400 rounded" required>
-                <input type="text" name="firstName" placeholder="First Name*" class="w-full p-3 mb-4 border border-gray-400 rounded" required>
-                <input type="text" name="lastName" placeholder="Last Name*" class="w-full p-3 mb-4 border border-gray-400 rounded" required>
+                <input type="text" name="firstName" placeholder="First Name (max 15 characters)*" class="w-full p-3 mb-4 border border-gray-400 rounded" required maxlength="15">
+                <input type="text" name="lastName" placeholder="Last Name (max 15 characters)*" class="w-full p-3 mb-4 border border-gray-400 rounded" required maxlength="15">
                 <p>Date of birth:</p>
                 <input type="date" name="dateOfBirth" placeholder="Date of Birth*" class="w-full p-3 mb-4 border border-gray-400 rounded text-gray-500" required>
                 <input type="text" name="aboutMe" placeholder="About Me" class="w-full p-3 mb-4 border border-gray-400 rounded">
