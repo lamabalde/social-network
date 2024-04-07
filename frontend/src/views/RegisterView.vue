@@ -20,8 +20,8 @@ import { sendRegister } from '../js_modules/requests.js';
                 <p>Date of birth:</p>
                 <input type="date" name="dateOfBirth" placeholder="Date of Birth*" class="w-full p-3 mb-4 border border-gray-400 rounded text-gray-500" required>
                 <input type="text" name="aboutMe" placeholder="About Me" class="w-full p-3 mb-4 border border-gray-400 rounded">
-                <input type="text" name="userName" placeholder="Username" class="w-full p-3 mb-4 border border-gray-400 rounded">
-                <input type="password" name="password" placeholder="Password*" class="w-full p-3 mb-4 border border-gray-400 rounded">
+                <input type="text" name="userName" placeholder="Username" class="w-full p-3 mb-4 border border-gray-400 rounded" required>
+                <input type="password" name="password" placeholder="Password*" class="w-full p-3 mb-4 border border-gray-400 rounded" required>
                 <p>Select a profile image:</p>
                 <input type="file" name="image" placeholder="Select an Image" 
                 class="w-full p-3 mb-4 border border-gray-400 rounded" accept="image/*">
