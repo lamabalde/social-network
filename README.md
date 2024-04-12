@@ -75,7 +75,7 @@ You can use the following user accounts for testing, but we recommend creating y
 - [mouhamadoufadiop](https://learn.zone01dakar.sn/git/mouhamadoufadiop)
 - [mabalde](https://learn.zone01dakar.sn/git/mabalde)
 - [serwade](https://learn.zone01dakar.sn/git/serwade)
-- [daibouba](https://learn.zone01dakar.sn/git/mabalde)
+- [daibouba](https://learn.zone01dakar.sn/git/daiba)
 - [ndiba](https://learn.zone01dakar.sn/git/ndiba)
 - [ediallo](https://learn.zone01dakar.sn/git/ediallo)
 
