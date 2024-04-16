@@ -1,6 +1,6 @@
 CREATE TABLE users (
     id TEXT PRIMARY KEY NOT NULL,
-	userName TEXT NOT NULL,
+	userName TEXT NOT NULL UNIQUE,
 	email TEXT NOT NULL UNIQUE,
 	password_hash TEXT NOT NULL,
 	dateCreate TIMESTAMP NOT NULL,

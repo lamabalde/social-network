@@ -12,7 +12,7 @@
     <div class="grid grid-rows-[auto,1fr]">        
         <div class="flex flex-col m-16 justify-center items-center">
             <form id="loginForm" @submit.prevent="handleLogin" class="bg-slate-100 p-6 rounded-md shadow-xl w-1/4">
-                <input type="text" name="username" placeholder="Username or Email" class="w-full p-3 mb-4 border border-gray-400 rounded">
+                <input type="text" name="username" placeholder="Email" class="w-full p-3 mb-4 border border-gray-400 rounded">
                 <input type="password" name="password" placeholder="Password" class="w-full p-3 mb-4 border border-gray-400 rounded">
                 <input type="submit" value="Login" class="hoverButton w-full p-3 text-white text-lg cursor-pointer gradient-animation rounded">
                 <router-link to="/register" class="hoverButton flex w-full mt-10 justify-center items-center p-3 text-black text-lg cursor-pointer gradient-animation rounded">Register instead</router-link>
