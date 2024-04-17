@@ -68,8 +68,8 @@ You can use the following user accounts for testing, but we recommend creating y
 
 |  Username  |  Password  |    E-mail        |
 |------------|------------|--------------    |
-| fallou     | fallou     | fallou@mail.com  |
-| test       | test       | test@mail.com    |
+| fallou     | fallou     | fallou@gmail.com  |
+| test       | test       | test@gmail.com    |
 | serwade    | serwade    | serwade@gmail.com|
 | mabalde    | mabalde    | mabalde@mail.com |
 |daibou      | daibou     | daibou@gmail.com |
