@@ -1,1 +1,0 @@
-DELETE FROM comments_likes;

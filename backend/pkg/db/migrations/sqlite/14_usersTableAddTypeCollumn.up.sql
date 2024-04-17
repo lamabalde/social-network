@@ -1,2 +1,0 @@
-ALTER TABLE users
-ADD profileType INTEGER NOT NULL DEFAULT 0 ;

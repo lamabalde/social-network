@@ -1,84 +1,67 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import ProfileView from '../views/ProfileView.vue';
-import PageNotFound from '../views/PageNotFound.vue';
-import LoginView from '../views/LoginView.vue';
-import RegisterView from '../views/RegisterView.vue';
-import checkAuth from '../middleware/auth.js';
-import GroupView from '../views/GroupView.vue'
-import EventView from "../views/EventView.vue";
-import SearchView from "../views/SearchView.vue";
-import Logout from "../js_modules/Logout.vue";
+import { createRouter, createWebHistory } from "vue-router";
+import Auth from "../components/Auth.vue";
+import store from "@/store";
+// import SignIn from '../views/SignInView.vue'
+// import RegisterView from '../views/RegisterView.vue'
+
+
+const routes = [
+  {
+    path: "/",
+    name: "auth",
+    component: Auth,
+
+  },
+  {
+    path: "/sign-in",
+    name: "sign-in",
+    component: () => import("../views/SignInView.vue"),
+  },
+  {
+    path: "/reg",
+    name: "register",
+    component: () => import("../views/RegisterView.vue"),
+  },
+  {
+    path: "/main",
+    name: "mainpage",
+    components: {
+      default: () => import("../views/MainView.vue"),
+      Chat: () => import("@/components/Chat/Chat.vue")
+    }
+  },
+  {
+    path: "/profile/:id",
+    name: "Profile",
+    components: {
+      default: () => import("../views/ProfileView.vue"),
+      Chat: () => import("@/components/Chat/Chat.vue")
+    }
+  },
+  {
+    path: "/group/:id",
+    name: "Group",
+    components: {
+      default: () => import("../views/GroupView.vue"),
+      Chat: () => import("@/components/Chat/Chat.vue")
+    }
+  },
+];
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: "/:catchAll(.*)*",
-      name: "PageNotFound",
-      component: PageNotFound,
-    },
-    {
-      path: "/",
-      name: "home",
-      component: HomeView,
-      /*meta: {
-        middleware: auth,
-      }*/
-    },
-    {
-      path: "/profile/:id",
-      name: "profile",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: ProfileView,
-    },
-    {
-      path: "/login",
-      name: "login",
-      component: LoginView,
-    },
-    {
-      path: "/register",
-      name: "register",
-      component: RegisterView,
-    },
-    {
-      path: "/logout",
-      name: "logout",
-      component: Logout,
-    },
-    {
-      path: "/groups/:id",
-      name: "groups",
-      component: GroupView,
-    },
-    {
-      path: "/event/:id",
-      name: "event",
-      component: EventView,
-    },
-    {
-      path: "/search/:id?",
-      name: "search",
-      component: SearchView,
-      
-    },
-  ],
+  history: createWebHistory(process.env.BASE_URL),
+  routes,
 });
 
-router.beforeEach(async function (to, from) {
-  const authenticated = await checkAuth()
-  if (to.path!="/login" && to.path!="/register") {
-    if (!authenticated) return '/login'
-  } else {
-    if (authenticated) return '/'
+
+router.beforeEach(async (to, from) => {
+  const isAuthenticated = await store.dispatch("isLoggedIn");
+
+  // if user is not authenticated redirect back to sign in page BUT
+  // only if the page user wants to go is not sign-in or register
+  if (!isAuthenticated && to.name !== "sign-in" && to.name !== "register") {
+    return { name: "sign-in" }
   }
 })
 
-
-
-export default router
-
-
+export default router;

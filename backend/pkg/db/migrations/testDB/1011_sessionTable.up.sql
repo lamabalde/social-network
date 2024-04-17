@@ -1,3 +1,0 @@
-INSERT INTO 'sessions' (id,	userID , expirySession, agent) VALUES ('111111-222' , '1', '2024-11-25 10:55:23.656479916+00:00' , 'Mozilla');
-INSERT INTO 'sessions' (id,	userID , expirySession, agent) VALUES ('222222-111' , '2', '2024-11-25 10:55:23.656479916+00:00' , 'Chrome');
-INSERT INTO 'sessions' (id,	userID , expirySession, agent) VALUES ('444444-111' , '4', '2024-11-25 10:55:23.656479916+00:00' , 'Mozilla');

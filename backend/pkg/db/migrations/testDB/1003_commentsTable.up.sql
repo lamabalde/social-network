@@ -1,4 +1,0 @@
-INSERT INTO comments (id,content,userID, dateCreate,postID) VALUES ('1','No, mine','1','2023-03-22 11:21:05.656479916+00:00','3');
-INSERT INTO comments (id,content,userID, dateCreate,postID) VALUES ('2','25, ish','2', '2023-03-27 09:43:13.656479916+00:00','7');
-INSERT INTO comments (id,content,userID, dateCreate,postID) VALUES ('3',"Lorem ipsum dolorem sit amet. Gli operatori del settore grafico e tipografico lo conoscono bene, in realtà tutte le professioni che hanno a che fare con l'universo della comunicazione", '3', '2023-08-27 09:43:13.656479916+00:00','8');
-INSERT INTO comments (id,content,userID, dateCreate,postID) VALUES ('4','Si tratta di una sequenza di parole latine che così come sono posizionate non formano frasi', '2', '2023-08-28 09:43:13.656479916+00:00','8');

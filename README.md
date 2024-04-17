@@ -1,4 +1,4 @@
-# Social-Network
+## Project description
 
 ## Introduction
 
@@ -6,36 +6,43 @@ This is a project of social network website. Users can create their profiles, wr
 
 Here you can find the [task description](https://github.com/01-edu/public/tree/master/subjects/social-network) and [>>> AUDIT QUESTIONS <<<](https://github.com/01-edu/public/tree/master/subjects/social-network/audit).
 
-<br>
+### Features
 
-### Used technologies
+- Followers
+- Profiles
+- Posts
+- Groups
+- Notifications
+- Chats
 
-**JavaScript** with **Vue.js** as its framework <br>
-**CSS** and **Tailwind CSS** <br>
-**Vite server** for the front-end part <br>
-**Go** for handling all the requests and responses on back-end <br>
-**SQLite3** for handling all the back-end database operations <br>
+## Run the project
 
-<br>
+To test the project you need to have [NodeJS](https://nodejs.org/en/) installed.
 
-### After registering a profile, users can:
+1. Start frontend server by going to **/frontend** directory and running those commands
 
-- Set up profile visibility
-- Follow other users
-- Add best friends
-- Create posts in general feed
-- Set up a visibility for each created post
-- Write comments to other posts
-- Create groups
-- Join existing groups
-- Create group events
-- Mark if user will go to an event or not
-- Send private messages to other users
-- Participate in group chats
-- See notifications of important updates
-- ** To select specific people that see posts, use the 'close friends' functionality once a user is following you.
+- `npm run serve`
+- `npm install`
 
-<br>
+2. Start backend server by going to **/backend** directory and run `go run server.go`
+
+## What I did
+
+I created the design of the project using Figma and then used that to create the HTML and CSS for our project. I created notifications and chat system and rest of the stuff regarding frontend we did together with my front-end partner Vic.
+
+## Stack
+
+Frontend
+
+- Vue
+- HTML & CSS
+- Figma
+
+Backend
+
+- Go
+- SQLite3
+
 
 ## How to launch
 
@@ -70,12 +77,17 @@ You can use the following user accounts for testing, but we recommend creating y
 | aissata    | aissata   | aissata@gmail.com |
 <br>
 
+
 ## Authors
+
+Backend team
 
 - [mouhamadoufadiop](https://learn.zone01dakar.sn/git/mouhamadoufadiop)
 - [mabalde](https://learn.zone01dakar.sn/git/mabalde)
 - [serwade](https://learn.zone01dakar.sn/git/serwade)
+
+Frontend team
+
 - [daibouba](https://learn.zone01dakar.sn/git/daiba)
 - [ndiba](https://learn.zone01dakar.sn/git/ndiba)
 - [ediallo](https://learn.zone01dakar.sn/git/ediallo)
-

@@ -1,73 +1,123 @@
 package main
 
 import (
-	"flag"
 	"fmt"
-	"log"
 	"net/http"
-
-	"social-network/backend/application"
-	"social-network/backend/pkg/controllers/wsconnection"
-	"social-network/backend/pkg/db/sqlite"
-	"social-network/backend/pkg/routes"
+	sqlite "social-network/pkg/db/sqlite"
+	"social-network/pkg/handlers"
+	"social-network/pkg/utils"
+	ws "social-network/pkg/wsServer"
 )
 
-var port = "8000" // DB   *sqlite.DBModel
-
 func main() {
-	log.SetFlags(log.LstdFlags | log.Lshortfile) // set flags in log package to print out file/line number on errors
-	var err error
+	// initialize database
+	db := sqlite.InitDB()
+	defer db.Close()
+	// temp
+	// initialize repositories
+	repos := sqlite.InitRepositories(db)
+	// initialize handlers with connection to repositories
+	handler := handlers.InitHandlers(repos)
+	// initialize wsServer
+	wsServer := ws.StartServer(repos)
 
-	// app keeps all dependences used by handlers
-
-	testDB, versionDB, err := parseArgs() // parse arguments,  default testDB is false
-	if err != nil {
-		log.Fatalln(err)
+	// set up server address and routes
+	server := &http.Server{
+		Addr:    ":8081",
+		Handler: setRoutes(handler, wsServer),
 	}
 
-	dbModel, err := sqlite.InitDB(testDB, versionDB)
-	if err != nil {
-		log.Fatalf("Failed to initialize database: %v", err)
-	}
-	defer dbModel.DB.Close()
-
-	addr := fmt.Sprintf(":%s", port) // localhost
-	app := application.New(dbModel, addr)
-	if err != nil {
-		log.Fatalln(err)
-	}
-
-	var wsHandlers [2]wsconnection.WSmux
-	wsHandlers[routes.WS_REPLYERS_UNI] = routes.CreateUniWsRoutes(app)
-	wsHandlers[routes.WS_REPLYERS_CHAT] = routes.CreateChatWsRoutes(app)
-
-	mux := http.NewServeMux()
-	app.Server.Handler = routes.CreateAPIroutes(mux, app, wsHandlers)
-
-	go app.Hub.Run()
-	app.InfoLog.Println("The chat Hub is running...")
-
-	log.Println("main: running server on port", port)
-	if err := app.Server.ListenAndServe(); err != nil {
-		app.ErrLog.Fatalf("main: couldn't start server: %v\n", err)
+	fmt.Printf("Server started at http://localhost" + server.Addr + "\n")
+	if err := server.ListenAndServe(); err != nil {
+		fmt.Println("Server error", err)
 	}
 }
 
-// Parses the program's arguments to obtain the server port. If no arguments found, it uses the 8000 port by default
-// Usage: go run . --testdb
-func parseArgs() (testDB bool, versionDB int, err error) {
-	usage := `wrong arguments
-	Usage: go run ./app [OPTIONS]
-	OPTIONS: 
-			--testdb start with the test DB
-			--versiondb=desired version of DB
-			--migrpath=path to the migration folder`
-	flag.BoolVar(&testDB, "testdb", false, "--testdb if you want to start with the test DB")
-	flag.IntVar(&versionDB, "versiondb", 0, "--versiondb=desired version of DB")
-	flag.Parse()
-	if flag.NArg() > 0 {
-		return false, 0, fmt.Errorf(usage)
-	}
+// Set up all routes
+func setRoutes(handler *handlers.Handler, wsServer *ws.Server) http.Handler {
+	mux := http.NewServeMux()
+	/* ------------------------------ image server ------------------------------ */
+	fs := http.FileServer(http.Dir("./imageUpload"))
+	mux.Handle("/imageUpload/", http.StripPrefix("/imageUpload/", utils.ConfigFSHeader(fs)))
+	/* ------------------------------- auth route ------------------------------- */
+	mux.HandleFunc("/register", handler.Register)
+	mux.HandleFunc("/signin", handler.Signin)
+	mux.HandleFunc("/logout", handler.Auth(handler.Logout))
+	mux.HandleFunc("/sessionActive", handler.SessionActive)
 
-	return
+	/* ---------------------------------- users --------------------------------- */
+	mux.HandleFunc("/allUsers", handler.Auth(handler.AllUsers))       // all users + info except current
+	mux.HandleFunc("/followers", handler.Auth(handler.GetFollowers))  //follower list
+	mux.HandleFunc("/following", handler.Auth(handler.GetFollowing))  // following list
+	mux.HandleFunc("/currentUser", handler.Auth(handler.CurrentUser)) //current user data
+	mux.HandleFunc("/userData", handler.Auth(handler.UserData))       //userd data based on following status
+	mux.HandleFunc("/changeStatus", handler.Auth(handler.UserStatus)) //change status
+
+	mux.HandleFunc("/follow", handler.Auth(func(w http.ResponseWriter, r *http.Request) {
+		handler.Follow(wsServer, w, r)
+	})) //follow user
+	mux.HandleFunc("/cancelFollowRequest", handler.Auth(handler.CancelFollowRequest))
+	mux.HandleFunc("/unfollow", handler.Auth(handler.Unfollow))
+	mux.HandleFunc("/responseFollowRequest", handler.Auth(handler.ResponseFollowRequest))
+
+	/* ---------------------------------- posts --------------------------------- */
+	mux.HandleFunc("/allPosts", handler.Auth(handler.AllPosts))   // all posts- main page
+	mux.HandleFunc("/userPosts", handler.Auth(handler.UserPosts)) // all user posts - user page
+	mux.HandleFunc("/newPost", handler.Auth(handler.NewPost))     // create route
+
+	/* -------------------------------- comments -------------------------------- */
+	mux.HandleFunc("/newComment", handler.Auth(handler.NewComment)) // create route
+
+	/* --------------------------------- groups --------------------------------- */
+	mux.HandleFunc("/allGroups", handler.Auth(handler.AllGroups))   // group list
+	mux.HandleFunc("/userGroups", handler.Auth(handler.UserGroups)) // group list of user groups
+	mux.HandleFunc("/otherUserGroups", handler.Auth(handler.OtherUserGroups)) // group list for specific user
+
+	mux.HandleFunc("/groupInfo", handler.Auth(handler.GroupInfo))                     // get group info
+	mux.HandleFunc("/groupMembers", handler.Auth(handler.GroupMembers))               // get group members
+	mux.HandleFunc("/groupEvents", handler.Auth(handler.GroupEvents))                 // get group events
+	mux.HandleFunc("/groupPosts", handler.Auth(handler.GroupPosts))                   // get group posts
+	mux.HandleFunc("/groupRequests", handler.Auth(handler.GroupRequests))             // get group member requests
+	mux.HandleFunc("/cancelGroupRequests", handler.Auth(handler.CancelGroupRequests)) //cancel request or joing group
+
+	mux.HandleFunc("/newGroup", handler.Auth(func(w http.ResponseWriter, r *http.Request) {
+		handler.NewGroup(wsServer, w, r)
+	})) // create new group
+	mux.HandleFunc("/newGroupPost", handler.Auth(handler.NewGroupPost))                           // create new group post
+	mux.HandleFunc("/newGroupInvite", handler.Auth(func(w http.ResponseWriter, r *http.Request) { // invite new users to group
+		handler.NewGroupInvite(wsServer, w, r)
+	}))
+	mux.HandleFunc("/newGroupRequest", handler.Auth(func(w http.ResponseWriter, r *http.Request) { // invite new users to group
+		handler.NewGroupRequest(wsServer, w, r)
+	}))
+	mux.HandleFunc("/responseGroupRequest", handler.Auth(func(w http.ResponseWriter, r *http.Request) {
+		handler.ResponseGroupRequest(wsServer, w, r)
+	})) // response to join request
+	mux.HandleFunc("/responseInviteRequest", handler.Auth(handler.ResponseInviteRequest)) // response to invite request
+
+	/* --------------------------------- events --------------------------------- */
+	mux.HandleFunc("/newEvent", handler.Auth(func(w http.ResponseWriter, r *http.Request) {
+		handler.NewEvent(wsServer, w, r)
+	})) // create new
+	mux.HandleFunc("/participate", handler.Auth(handler.Participate)) // react to participation in event
+
+	/* ------------------------------ notifications ----------------------------- */
+	mux.HandleFunc("/notifications", handler.Auth(handler.Notifications)) //get all notifs from db on login
+
+	/* ------------------------------ chat messages ----------------------------- */
+	mux.HandleFunc("/messages", handler.Auth(handler.Messages))             //get all chat messages for specific chat
+	mux.HandleFunc("/unreadMessages", handler.Auth(handler.UnreadMessages)) //get list of messages that isn't read
+	mux.HandleFunc("/messageRead", handler.Auth(handler.MessageRead))       //mark message as read
+	mux.HandleFunc("/newMessage", handler.Auth(func(w http.ResponseWriter, r *http.Request) {
+		handler.NewMessage(wsServer, w, r)
+	})) // new chat message
+	mux.HandleFunc("/chatList", handler.Auth(handler.ChatList)) //get list of users to display in chatbox
+	mux.HandleFunc("/responseChatRequest", handler.Auth(handler.ResponseChatRequest)) // response to chat request
+
+	/* ---------------------------- websocket server ---------------------------- */
+	mux.HandleFunc("/ws", handler.Auth(func(w http.ResponseWriter, r *http.Request) {
+		handler.SocketHandler(wsServer, w, r)
+	}))
+
+	return mux
 }

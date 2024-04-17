@@ -1,21 +1,33 @@
-<script setup>
-import { watch } from 'vue';
-import { notificationsComponent } from './js_modules/reactive_elements/notificationComponent';
-import { currentUser } from './js_modules/reactive_elements/userComponent';
-import ChatComponent from './components/chat/ChatComponent.vue';
-import Chat from './components/chat/Chat.vue';
-import { chatComponent } from './js_modules/reactive_elements/chatComponent';
-watch(() => currentUser.value.userInfo.id, id => {
-  getNotifications(id)
-})
+<template>
 
-function getNotifications(userID) {
-  notificationsComponent.value.getNotifications(userID)
+    <router-view>
+
+    </router-view>
+
+    <router-view name="Chat"></router-view>
+</template>
+
+<script>
+
+import Chat from './components/Chat/Chat.vue'
+export default {
+    name: 'App',
+    components: { Chat },
+
+    mounted() {
+        window.addEventListener("load", this.createWebSocketConn)
+    },
+
+    methods: {
+        createWebSocketConn() {
+            if (this.$route.path === "/sign-in" || this.$route.path === "/reg" ) {
+                return
+            }
+            this.$store.dispatch("createWebSocketConn")
+        }
+    }
 }
 </script>
 
-
-<template>
-  <router-view :key="$route.fullPath"/>
-  <Chat v-if="chatComponent.isChatOpen"></Chat>
-</template>
+<style>
+</style>

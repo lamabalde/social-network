@@ -1,1 +1,0 @@
-DELETE FROM posts WHERE id='gr1' OR id='gr2';

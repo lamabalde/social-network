@@ -1,17 +1,19 @@
-version: '3'
+version: "3"
 
 services:
-  
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    ports:
-      -  8080:8080  # Map the container's port 8080 to the host's port 8080
-  backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    ports:
-      -  8000:8000  # Map the container's port 8000 to the host's port 8000
 
+  backend:
+
+    build: backend/
+    command: ./social-network
+    ports:
+      - 8081:8081
+
+  frontend:
+
+    build: frontend/ 
+    command: [ "http-server", "dist" ]
+    ports:
+      - 8080:8080
+    depends_on:
+      - backend
