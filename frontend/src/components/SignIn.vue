@@ -2,7 +2,7 @@
 
   <div class="sign-in__wrapper">
     <div>
-      <img src="../assets/toa-heftiba-l_ExpFwwOEg-unsplash.jpg" alt="people hanging out">
+      <img src="../assets/zone01.jpg" alt="people hanging out">
 
     </div>
 

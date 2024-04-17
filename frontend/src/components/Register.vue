@@ -1,6 +1,6 @@
 <template>
     <div class="register__wrapper">
-        <img src="../assets/pexels-cottonbro-5053739.jpg" alt="man holding phone">
+        <img src="../assets/Z1.jpg" alt="man holding phone">
 
         <div class="register">
             <h1>Create your account</h1>
