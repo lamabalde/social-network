@@ -9,41 +9,41 @@
                 <div class="form-group">
                     <div class="form-input">
                         <label for="firstname">First name</label>
-                        <input v-model="form.firstname" type="text" name="firstname" id="firstname" required>
+                        <input v-model="form.firstname" type="text" name="firstname" placeholder="Your firstname (max 20 characters)*"  id="firstname" required maxlength="20">
                     </div>
                     <div class="form-input">
                         <label for="email">Email</label>
-                        <input v-model="form.email" type="email" name="email" id="email" required>
+                        <input v-model="form.email" type="email" name="email" placeholder="Email*"  id="email" required>
                     </div>
 
                     <div class="form-input">
                         <label for="date">Date of Birth</label>
-                        <input v-model="form.dateofbirth" type="date" name="date" id="date" required>
+                        <input v-model="form.dateofbirth" type="date" name="date" placeholder="Date of Birth*" id="date" required>
                     </div>
 
                     <div class="form-input">
                         <label for="aboutme">About me</label>
-                        <textarea v-model="form.aboutme" id="aboutme" name="aboutme" rows="4" cols="50"></textarea>
+                        <textarea v-model="form.aboutme" id="aboutme" name="aboutme" placeholder="About Me" rows="4" cols="50"></textarea>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="form-input">
                         <label for="lastname">Last name</label>
-                        <input v-model="form.lastname" type="text" name="lastname" id="lastname" required>
+                        <input v-model="form.lastname" type="text" name="lastname" placeholder="Last Name (max 15 characters)*" id="lastname" required maxlength="15">
                     </div>
 
                     <div class="form-input">
                         <label for="password">Password</label>
-                        <input v-model="form.password" type="password" name="password" id="password" required>
+                        <input v-model="form.password" type="password" name="password" placeholder="Password (alphanumeric)* " id="password" required pattern="[A-Za-z0-9]+">
                     </div>
 
                     <div class="form-input">
                         <label for="nickname">Nickname</label>
-                        <input v-model="form.nickname" type="text" name="nickname" id="nickname">
+                        <input v-model="form.nickname" type="text" name="nickname" placeholder="Username (max 10 letters)" id="nickname" pattern="[A-Za-z0-9]{1,10}">
                     </div>
 
-                    <FileUpload v-model:file="form.avatar" labelName="Avatar"></FileUpload>
+                    <FileUpload v-model:file="form.avatar" labelName="Avatar" placeholder="Select an Image" ></FileUpload>
                 </div>
             </form>
 
