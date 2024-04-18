@@ -68,13 +68,13 @@ You can use the following user accounts for testing, but we recommend creating y
 
 |  Username  |  Password  |    E-mail        |
 |------------|------------|--------------    |
-| fallou     | fallou     | fallou@gmail.com  |
-| test       | test       | test@gmail.com    |
+| fallou     | fallou     | fallou@gmail.com |
+| test       | test       | test@gmail.com   |
 | serwade    | serwade    | serwade@gmail.com|
 | mabalde    | mabalde    | mabalde@mail.com |
 |daibou      | daibou     | daibou@gmail.com |
 | ndiagaba   | ndiagaba   | ndiaga@gmail.com |
-| aissata    | aissata   | aissata@gmail.com |
+| ediallo    | ediallo    | ediallo@gmail.com|
 <br>
 
 

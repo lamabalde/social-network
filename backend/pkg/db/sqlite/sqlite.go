@@ -14,7 +14,7 @@ import (
 // initialize db
 func InitDB() *sql.DB {
 
-	db, err := sql.Open("sqlite3", "./tempDB.db")
+	db, err := sql.Open("sqlite3", "./social-network.db")
 	if err != nil {
 		log.Fatal(err)
 	}
