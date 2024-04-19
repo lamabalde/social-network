@@ -156,7 +156,7 @@ func (handler *Handler) GetFollowers(w http.ResponseWriter, r *http.Request) {
 	utils.RespondWithUsers(w, followers, 200)
 }
 
-// Find all who clinet is following
+// Find all who client are following
 func (handler *Handler) GetFollowing(w http.ResponseWriter, r *http.Request) {
 	w = utils.ConfigHeader(w)
 	// get userId from request
