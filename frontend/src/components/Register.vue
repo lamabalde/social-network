@@ -23,7 +23,7 @@
 
                     <div class="form-input">
                         <label for="aboutme">About me</label>
-                        <textarea v-model="form.aboutme" id="aboutme" name="aboutme" placeholder="About Me" rows="4" cols="50"></textarea>
+                        <textarea v-model="form.aboutme" id="aboutme" name="aboutme" placeholder="About Me" rows="4" cols="50" maxlength="100"></textarea>
                     </div>
                 </div>
 
