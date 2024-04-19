@@ -10,7 +10,7 @@
             <form @submit.prevent="submitNewGroup" ref="theForm">
                 <div class="form-input">
                     <label for="name">Name</label>
-                    <input type="text" name="name" id="name">
+                    <input type="text" name="name" id="name" maxlength="30">
                 </div>
 
                 <div class="form-input">
@@ -20,7 +20,8 @@
                               rows="4"
                               cols="50"
                               required
-                              placeholder="Describe here"></textarea>
+                              placeholder="Describe here" maxlength="500"></textarea>
+                              
                 </div>
     
                 <MultiselectDropdown

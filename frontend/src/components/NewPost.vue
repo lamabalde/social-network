@@ -35,7 +35,7 @@
                     <label for="description">Description</label>
 
                     <textarea id="description" v-model="newpost.body" rows="4" cols="50"
-                              placeholder="What are you thinking?" required></textarea>
+                              placeholder="What are you thinking?"  required></textarea>
 
                 </div>
 
