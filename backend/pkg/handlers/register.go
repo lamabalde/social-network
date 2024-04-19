@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"social-network/pkg/models"
 	"social-network/pkg/utils"
-
+	"strings"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -24,7 +24,7 @@ func (handler *Handler) Register(w http.ResponseWriter, r *http.Request) {
 
 	// Create new user instance
 	newUser := models.User{
-		Email:       r.PostFormValue("email"),
+		Email:       strings.ToLower(r.PostFormValue("email")),
 		FirstName:   r.PostFormValue("firstname"),
 		LastName:    r.PostFormValue("lastname"),
 		Password:    r.PostFormValue("password"),
