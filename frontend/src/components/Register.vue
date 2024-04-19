@@ -18,7 +18,7 @@
 
                     <div class="form-input">
                         <label for="date">Date of Birth</label>
-                        <input v-model="form.dateofbirth" type="date" name="date" placeholder="Date of Birth*" id="date" required>
+                        <input v-model="form.dateofbirth" type="date" name="date" placeholder="Date of Birth*" id="date" required max="2012-01-01">
                     </div>
 
                     <div class="form-input">
@@ -35,7 +35,7 @@
 
                     <div class="form-input">
                         <label for="password">Password</label>
-                        <input v-model="form.password" type="password" name="password" placeholder="Password (alphanumeric)* " id="password" required pattern="[A-Za-z0-9]+">
+                        <input v-model="form.password" type="password" name="password" placeholder="Password (alphanumeric)* " id="password" required pattern="[A-Za-z0-9]+" minlength="6">
                     </div>
 
                     <div class="form-input">
@@ -71,6 +71,7 @@ export default {
                 avatar: null,
                 aboutme: "",
             },
+            // dateMin: new Date((new Date().getTime() - (18 * 365 * 24 * 60 * 60 * 1000)).toFixed(0)).toISOString().split('T')[0],
         };
     },
     methods: {
