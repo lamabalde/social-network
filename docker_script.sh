@@ -1,3 +1,3 @@
-#! bin/bash
-
-docker compose build && docker compose up
+# use only if not running docker!
+npm install --prefix ./frontend
+npm run serve --prefix ./frontend

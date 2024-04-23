@@ -1,9 +1,10 @@
 FROM node:lts-alpine
-RUN npm install -g http-server
 WORKDIR /frontend
+# Copy only the necessary files initially (package.json and package-lock.json)
 COPY package*.json ./
+# Install dependencies
 RUN npm install
 COPY . .
 RUN npm run build
 EXPOSE 8080
-CMD [ "http-server", "dist" ]
+CMD ["npm", "run", "serve"]
